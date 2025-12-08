@@ -1,0 +1,1008 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Programs - A.P.D.F.E</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+            background: white;
+        }
+        
+        /* Header Styles */
+        header {
+            background: white;
+            color: #333;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .top-bar {
+            background: #f8f9fa;
+            padding: 4px 0;
+            font-size: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .top-bar .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .contact-info { display: flex; gap: 25px; }
+        .contact-info span { display: flex; align-items: center; gap: 5px; color: #555; }
+        .social-links { display: flex; gap: 15px; }
+        .social-links a { color: #555; text-decoration: none; transition: color 0.3s; }
+        .social-links a:hover { color: #2ecc71; }
+
+        .main-header {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo { display: flex; align-items: center; gap: 12px; margin-right: auto; }
+        .logo-image {
+            width: 85px; 
+            height: auto;
+            object-fit: contain;
+        }
+        .logo-text h1 { font-size: 22px; font-weight: 700; margin-bottom: 0; color: #3498db; line-height: 1; }
+        .logo-text p { font-size: 10px; color: #666; letter-spacing: 0.5px; line-height: 1; margin-top: 3px; }
+
+        nav ul {
+            display: flex; list-style: none; gap: 18px; align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li a {
+            color: #333; text-decoration: none; font-weight: 500;
+            font-size: 13px;
+            transition: color 0.3s; position: relative;
+            line-height: 1;
+            padding: 3px 0;
+        }
+        nav ul li a.active {
+            color: #2ecc71;
+        }
+        nav ul li a::after {
+            content: ''; position: absolute; bottom: 0; left: 0;
+            width: 0; height: 2px; background: #2ecc71; transition: width 0.3s;
+        }
+        nav ul li a.active::after {
+            width: 100%;
+        }
+        nav ul li a:hover::after { width: 100%; }
+        nav ul li a:hover { color: #2ecc71; }
+
+        .donate-btn {
+            background: #2ecc71; color: white; padding: 8px 18px;
+            border-radius: 25px; font-weight: 600; font-size: 13px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            line-height: 1;
+        }
+        .donate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(46,204,113,0.4);
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(135deg, rgba(52,152,219,0.95), rgba(46,204,113,0.85)),
+                        url('https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            padding: 120px 20px 80px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .page-header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(255,255,255,0.1) 0%, transparent 60%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        
+        .page-header-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .page-header h1 {
+            font-size: 56px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            text-shadow: 0 5px 30px rgba(0,0,0,0.3);
+            animation: fadeInUp 0.8s ease-out;
+        }
+        
+        .page-header p {
+            font-size: 20px;
+            opacity: 0.95;
+            text-shadow: 0 2px 15px rgba(0,0,0,0.2);
+            animation: fadeInUp 0.8s ease-out 0.2s both;
+        }
+        
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Programs Overview */
+        .programs-overview {
+            padding: 80px 20px;
+            background: white;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .section-intro {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        
+        .section-intro h2 {
+            font-size: 42px;
+            color: #3498db;
+            margin-bottom: 15px;
+        }
+        
+        .section-intro p {
+            font-size: 18px;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* Program Sections */
+        .program-section {
+            margin-bottom: 100px;
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .program-header {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            margin-bottom: 50px;
+        }
+        
+        .program-header.reverse {
+            direction: rtl;
+        }
+        
+        .program-header.reverse > * {
+            direction: ltr;
+        }
+        
+        .program-content h3 {
+            font-size: 36px;
+            color: #3498db;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .program-icon-large {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #3498db, #2ecc71);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 30px;
+        }
+        
+        .program-content p {
+            font-size: 17px;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+        
+        .program-highlights {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .highlight-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            transition: all 0.3s;
+        }
+        
+        .highlight-item:hover {
+            background: #e8f5e9;
+            transform: translateX(5px);
+        }
+        
+        .highlight-item i {
+            color: #2ecc71;
+            font-size: 20px;
+        }
+        
+        .highlight-item span {
+            font-size: 15px;
+            color: #333;
+        }
+        
+        .program-image {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.15);
+            position: relative;
+            height: 400px;
+        }
+        
+        .program-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .program-image:hover img {
+            transform: scale(1.1);
+        }
+        
+        .program-image::before {
+            content: '';
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            right: 15px;
+            bottom: 15px;
+            border: 3px solid rgba(255,255,255,0.5);
+            border-radius: 15px;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* Sub-programs */
+        .sub-programs {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .sub-program-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid #e8f5e9;
+            transition: all 0.3s;
+        }
+        
+        .sub-program-card:hover {
+            border-color: #2ecc71;
+            box-shadow: 0 10px 30px rgba(46,204,113,0.1);
+            transform: translateY(-5px);
+        }
+        
+        .sub-program-card h4 {
+            color: #3498db;
+            font-size: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .sub-program-card h4 i {
+            color: #2ecc71;
+        }
+        
+        .sub-program-card p {
+            color: #666;
+            line-height: 1.7;
+            font-size: 15px;
+        }
+
+        /* Impact Stats */
+        .impact-stats {
+            background: linear-gradient(135deg, #3498db, #2ecc71);
+            padding: 60px 20px;
+            border-radius: 20px;
+            margin: 80px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .impact-stats::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .stat-box {
+            color: white;
+        }
+        
+        .stat-box i {
+            font-size: 40px;
+            margin-bottom: 15px;
+            opacity: 0.9;
+        }
+        
+        .stat-number {
+            font-size: 42px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .stat-label {
+            font-size: 16px;
+            opacity: 0.95;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: #f8f9fa;
+            padding: 80px 20px;
+            text-align: center;
+        }
+        
+        .cta-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .cta-content h2 {
+            font-size: 42px;
+            color: #3498db;
+            margin-bottom: 20px;
+        }
+        
+        .cta-content p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 14px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: all 0.4s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            border: none;
+        }
+        
+        .btn-primary {
+            background: #2ecc71;
+            color: white;
+            box-shadow: 0 10px 30px rgba(46,204,113,0.3);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(46,204,113,0.4);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: #3498db;
+            border: 2px solid #3498db;
+        }
+        
+        .btn-secondary:hover {
+            background: #3498db;
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        /* Footer */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 80px 20px 20px;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section h3 {
+            color: #2ecc71;
+            margin-bottom: 25px;
+            font-size: 20px;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section ul li {
+            margin-bottom: 12px;
+        }
+        
+        .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+        
+        .footer-section a:hover {
+            color: #2ecc71;
+            transform: translateX(5px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #34495e;
+            color: #bdc3c7;
+        }
+
+        /* Mobile Menu */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+        
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            transition: all 0.3s;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 968px) {
+            .program-header {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .program-header.reverse {
+                direction: ltr;
+            }
+            
+            .program-highlights {
+                grid-template-columns: 1fr;
+            }
+            
+            .sub-programs {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .top-bar { display: none; }
+            .menu-toggle { display: flex; }
+            nav ul {
+                flex-direction: column;
+                gap: 15px;
+                display: none;
+                width: 100%;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background: white;
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+            nav ul.active { display: flex; }
+            
+            .page-header h1 { font-size: 36px; }
+            .page-header p { font-size: 16px; }
+            .page-header { padding: 80px 20px 60px; }
+            
+            .section-intro h2 { font-size: 32px; }
+            .program-content h3 { font-size: 28px; }
+            
+            .cta-content h2 { font-size: 32px; }
+            .cta-buttons { flex-direction: column; }
+            .btn { width: 100%; justify-content: center; }
+        }
+        
+        @media (max-width: 480px) {
+            .page-header h1 { font-size: 28px; }
+            .section-intro h2 { font-size: 26px; }
+            .program-content h3 { font-size: 24px; }
+            .stat-number { font-size: 32px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="top-bar">
+            <div class="container">
+                <div class="contact-info">
+                    <span><i class="ri-mail-line"></i> info@apdfe.org</span>
+                    <span><i class="ri-phone-line"></i> +250 788 123 456</span>
+                </div>
+                <div class="social-links">
+                    <a href="#" title="Facebook"><i class="ri-facebook-fill"></i></a>
+                    <a href="#" title="Twitter"><i class="ri-twitter-x-fill"></i></a>
+                    <a href="#" title="Instagram"><i class="ri-instagram-line"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="main-header">
+            <div class="logo">
+                <img src="images/logo.jpg" alt="A.P.D.F.E Logo" class="logo-image">
+                <div class="logo-text">
+                    <h1>A.P.D.F.E</h1>
+                    <p>Building Better Futures Together</p>
+                </div>
+            </div>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span><span></span><span></span>
+            </div>
+            <nav>
+                <ul id="menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="programs.html" class="active">Programs</a></li>
+                    <li><a href="impact.html">Impact</a></li>
+                    <li><a href="volunteer.html">Get Involved</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="donate.html" class="donate-btn">Donate Now</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="page-header">
+        <div class="page-header-content">
+            <h1>Our Programs</h1>
+            <p>Comprehensive initiatives designed to create lasting change and empower communities across Central Africa</p>
+        </div>
+    </section>
+
+    <section class="programs-overview">
+        <div class="container">
+            <div class="section-intro">
+                <h2>Transforming Lives Through Action</h2>
+                <p>APDFE operates across Central African Republic, Democratic Republic of Congo, Congo-Brazzaville, and Cameroon with six core program areas addressing the most critical needs in our communities.</p>
+            </div>
+
+            <!-- 1. HEALTH PROGRAM -->
+            <div class="program-section">
+                <div class="program-header">
+                    <div class="program-content">
+                        <h3>
+                            <span class="program-icon-large">
+                                <i class="ri-heart-pulse-line"></i>
+                            </span>
+                            HEALTH PROGRAM
+                        </h3>
+                        <p>In many of African countries, ongoing conflict, poverty, and lack of access to basic services have severely impacted the health and well-being of women and girls. Malnutrition remains a silent emergency in Africa, especially among children under five and pregnant or lactating women. The trauma of endless wars, displacement, and gender-based violence has left deep psychological wounds across the population in many countries especially in Central African Republic (CAR) and Democratic Republic of Congo (DRC).</p>
+                        <div class="program-highlights">
+                            <div class="highlight-item">
+                                <i class="ri-check-double-line"></i>
+                                <span>Awareness Campaigns</span>
+                            </div>
+                            <div class="highlight-item">
+                                <i class="ri-check-double-line"></i>
+                                <span>Mobile Screening</span>
+                            </div>
+                            <div class="highlight-item">
+                                <i class="ri-check-double-line"></i>
+                                <span>Group Therapy</span>
+                            </div>
+                            <div class="highlight-item">
+                                <i class="ri-check-double-line"></i>
+                                <span>Trauma-Informed Care</span>
+                            </div>
+                        </div>
+                    </div>
+                                        <div class="program-image">
+                                            <img src="images/1.jpg" alt="Health Program">
+                                        </div>
+                </div>
+                
+                <div class="sub-programs">
+                    <div class="sub-program-card">
+                        <h4><i class="ri-women-line"></i>SEXUAL AND REPRODUCTIVE HEALTH AND RIGHTS (SRHR)</h4>
+                        <p>Many women and adolescent girls in both urban and rural areas face immense barriers to accessing comprehensive sexual and reproductive health services, including contraception, menstrual hygiene management, maternal care, and safe abortion. Teenage pregnancies and gender-based violence remain high, while stigma and harmful traditional beliefs continue to affect bodily autonomy and decision-making. APDFE’s SRHR initiative aims to improve access to accurate information, essential health services, and community awareness on reproductive rights. We conduct awareness campaigns, train peer educators, collaborate with local health facilities, and create safe, inclusive spaces for dialogue and counseling. Our approach centers on empowering women and girls to make informed decisions about their bodies, while working with men and community leaders to foster collective responsibility and reduce stigma.</p>
+                    </div>
+                    <div class="sub-program-card">
+                        <h4><i class="ri-heart-line"></i>MALNUTRITION (WITH FOCUS ON CHILDREN UNDER 5 AND PREGNANT WOMEN)</h4>
+                        <p>Years of instability, displacement, and weak health systems have led to food insecurity, poor infant feeding practices, and limited access to prenatal care. Acute malnutrition is one of the leading causes of child mortality in the country. APDFE responds through targeted nutrition support programs that promote maternal and child health. We run mobile nutrition screening campaigns, support community-based therapeutic feeding, and provide nutrition education for mothers. We partner with local health services to deliver vitamin supplementation, deworming, and follow-up care for vulnerable households, aiming to break the cycle of malnutrition and poor health outcomes in early childhood.</p>
+                    </div>
+                    <div class="sub-program-card">
+                        <h4><i class="ri-mental-health-line"></i>MENTAL HEALTH AND PSYCHO-SOCIAL SUPPORT (MHPSS)</h4>
+                        <p>Yet mental health services remain scarce almost to none, stigmatized, and often inaccessible, particularly for women, youth, and survivors of violence. APDFE integrates Mental Health and Psycho-social Support (MHPSS) across its programming to promote healing and resilience. We offer group therapy, one-on-one counseling, peer-led support groups, and recreational activities that help individuals rebuild confidence and community ties. Our trained psycho-social workers also identify and refer individuals with severe cases to professional care, ensuring a community-based, trauma-informed approach that leaves no one behind.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 2. YOUTH AND WOMEN ECONOMIC EMPOWERMENT -->
+            <div class="program-section">
+                <div class="program-header reverse">
+                    <div class="program-content">
+                        <h3>
+                            <span class="program-icon-large">
+                                <i class="ri-hand-coin-line"></i>
+                            </span>
+                            YOUTH AND WOMEN ECONOMIC EMPOWERMENT
+                        </h3>
+                        <p>In the four countries where APDFE operates, over 70% of the population lives in poverty and formal job opportunities are limited, empowering women and youth with economic skills is essential for breaking cycles of dependency and marginalization. Displaced women, adolescent girls, and youth in post-conflict areas are especially excluded from income-generating opportunities.</p>
+                        <div class="program-highlights">
+                            <div class="highlight-item">
+                                <i class="ri-check-double-line"></i>
+                                <span>Vocational Training</span>
+                            </div>
+                            <div class="highlight-item">
+                                <i class="ri-check-double-line"></i>
+                                <span>Entrepreneurship Skills</span>
+                            </div>
+                            <div class="highlight-item">
+                                <i class="ri-check-double-line"></i>
+                                <span>Financial Literacy</span>
+                            </div>
+                            <div class="highlight-item">
+                                <i class="ri-check-double-line"></i>
+                                <span>Cooperative Groups</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="program-image">
+                        <img src="images/2.jpg" alt="Youth and Women Economic Empowerment">
+                    </div>
+                </div>
+                
+                <div class="sub-programs">
+                    <div class="sub-program-card">
+                        <h4><i class="ri-tools-line"></i>Vocational Training and Entrepreneurship</h4>
+                        <p>APDFE’s economic empowerment program equips women and youth with vocational training, entrepreneurship skills, and access to financial literacy and savings mechanisms. We offer hands-on training in tailoring, agriculture, small-scale trade, and handcrafts, while also forming cooperative groups to increase collective strength and access to local markets. Through mentorship, start-up kits, and community support networks, we help participants build sustainable livelihoods that enhance their autonomy and dignity.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 3. CHILD PROTECTION AND CHILD RIGHTS GOVERNANCE -->
+            <div class="program-section">
+                <div class="program-header">
+                    <div class="program-content">
+                        <h3>
+                            <span class="program-icon-large">
+                                <i class="ri-shield-user-line"></i>
+                            </span>
+                            CHILD PROTECTION AND CHILD RIGHTS GOVERNANCE
+                        </h3>
+                        <p>Children in many African countries continue to face violations of their rights, including early marriage, child labor, recruitment into armed groups, and abuse in both homes and displacement camps. Weak legal frameworks, cultural practices, and low awareness exacerbate the vulnerability of children, especially girls.</p>
+                        <div class="program-highlights">
+                            <div class="highlight-item">
+                                <i class="ri-check-double-line"></i>
+                                <span>Community Mechanisms</span>
+                            </div>
+                            <div class="highlight-item">
+                                <i class="ri-check-double-line"></i>
+                                <span>Awareness-Raising</span>
+                            </div>
+                            <div class="highlight-item">
+                                <i class="ri-check-double-line"></i>
+                                <span>Child-Friendly Spaces</span>
+                            </div>
+                            <div class="highlight-item">
+                                <i class="ri-check-double-line"></i>
+                                <span>Legal Advocacy</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="program-image">
+                        <img src="images/3.jpg" alt="Child Protection and Child Rights Governance">
+                    </div>
+                </div>
+                
+                <div class="sub-programs">
+                    <div class="sub-program-card">
+                        <h4><i class="ri-home-heart-line"></i>Protection Mechanisms and Safe Spaces</h4>
+                        <p>APDFE works to protect children and uphold their rights through community-based child protection mechanisms, awareness-raising on Child Rights and Their Protection, and advocacy. We establish child-friendly spaces where children can learn, play, and express themselves safely. We also train community actors on child rights, identify at-risk children, and refer cases to appropriate services.</p>
+                    </div>
+                    <div class="sub-program-card">
+                        <h4><i class="ri-government-line"></i>Governance and Advocacy</h4>
+                        <p>In addition, we advocate for stronger legal protections and involve children in governance processes to ensure their voices are heard and respected in the decisions that affect them.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 4. ENVIRONMENTAL PROTECTION -->
+            <div class="program-section">
+                <div class="program-header reverse">
+                    <div class="program-content">
+                        <h3>
+                            <span class="program-icon-large">
+                                <i class="ri-leaf-line"></i>
+                            </span>
+                            ENVIRONMENTAL PROTECTION
+                        </h3>
+                        <p>Environmental degradation, deforestation, and poor waste management are rising threats across the world, particularly in urban and post-conflict areas where displaced populations strain limited natural resources. Climate change is further exacerbating food insecurity, water scarcity, and health issues.</p>
+                        <div class="program-highlights">
+                            <div class="highlight-item">
+                                <i class="ri-check-double-line"></i>
+                                <span>Climate Awareness</span>
+                            </div>
+                            <div class="highlight-item">
+                                <i class="ri-check-double-line"></i>
+                                <span>Community Conservation</span>
+                            </div>
+                            <div class="highlight-item">
+                                <i class="ri-check-double-line"></i>
+                                <span>Eco-Initiatives</span>
+                            </div>
+                            <div class="highlight-item">
+                                <i class="ri-check-double-line"></i>
+                                <span>Green Jobs</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="program-image">
+                        <img src="images/4.jpg" alt="Environmental Protection">
+                    </div>
+                </div>
+                
+                <div class="sub-programs">
+                    <div class="sub-program-card">
+                        <h4><i class="ri-plant-line"></i>Conservation and Eco-Initiatives</h4>
+                        <p>APDFE’s environmental program raises awareness about climate change, promotes community-led conservation, and integrates green practices into all programming. We support women- and youth-led eco-initiatives, such as tree planting, sustainable farming, recycling projects, and clean energy use. Our aim is to promote environmental stewardship while creating green jobs and building community resilience to environmental shocks.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 5. EDUCATION PROGRAM -->
+            <div class="program-section">
+                <div class="program-header">
+                    <div class="program-content">
+                        <h3>
+                            <span class="program-icon-large">
+                                <i class="ri-book-open-line"></i>
+                            </span>
+                            EDUCATION PROGRAM
+                        </h3>
+                        <p>Education remains a significant challenge in all the four countries where APDFE operates which are Central African Republic, Democratic Republic of Congo (Eastern-DRC), Congo-Brazzaville and Cameroon, where years of conflict and instability have led to the destruction of schools, displacement of teachers, and a breakdown in the formal education system. Vulnerable groups especially girls from displaced or impoverished backgrounds are often excluded from education due to poverty, early marriage, gender discrimination, and the absence of learning facilities in conflict-affected areas.</p>
+                        <div class="program-highlights">
+                            <div class="highlight-item">
+                                <i class="ri-check-double-line"></i>
+                                <span>Literacy and Numeracy</span>
+                            </div>
+                            <div class="highlight-item">
+                                <i class="ri-check-double-line"></i>
+                                <span>Life Skills Training</span>
+                            </div>
+                            <div class="highlight-item">
+                                <i class="ri-check-double-line"></i>
+                                <span>Scholastic Materials</span>
+                            </div>
+                            <div class="highlight-item">
+                                <i class="ri-check-double-line"></i>
+                                <span>Advocacy Campaigns</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="program-image">
+                        <img src="images/5.jpg" alt="Education Program">
+                    </div>
+                </div>
+                
+                <div class="sub-programs">
+                    <div class="sub-program-card">
+                        <h4><i class="ri-graduation-cap-line"></i>Literacy, Numeracy, and Empowerment</h4>
+                        <p>APDFE’s Education Program seeks to bridge this gap by offering literacy and numeracy programs specifically designed for out-of-school and marginalized women and girls. We provide foundational skills in reading, writing, and basic mathematics, complemented by life skills and leadership training that help learners gain confidence and agency in their communities. Our approach prioritizes the creation of safe, inclusive learning environments where women and girls can grow without fear or judgment. In addition to the learning curriculum, APDFE distributes scholastic materials such as notebooks, pens, backpacks, and hygiene kits to reduce the economic burden on families and improve school retention. We also support school reintegration efforts and run advocacy campaigns that promote girls’ right to education at all levels. Through this program, we aim to break the cycle of illiteracy and empower future generations of women and girls with the tools to build better lives.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 6. PEACE-BUILDING AND GOVERNANCE -->
+            <div class="program-section">
+                <div class="program-header reverse">
+                    <div class="program-content">
+                        <h3>
+                            <span class="program-icon-large">
+                                <i class="ri-handshake-line"></i>
+                            </span>
+                            PEACE-BUILDING AND GOVERNANCE
+                        </h3>
+                        <p>Decades of armed conflict and political instability have undermined peace, trust in institutions, and social cohesion in many countries of Africa. Women and youth are often excluded from peace processes, yet they play critical roles in building local resilience and fostering reconciliation.</p>
+                        <div class="program-highlights">
+                            <div class="highlight-item">
+                                <i class="ri-check-double-line"></i>
+                                <span>Inclusive Dialogue</span>
+                            </div>
+                            <div class="highlight-item">
+                                <i class="ri-check-double-line"></i>
+                                <span>Leadership Training</span>
+                            </div>
+                            <div class="highlight-item">
+                                <i class="ri-check-double-line"></i>
+                                <span>Peace Committees</span>
+                            </div>
+                            <div class="highlight-item">
+                                <i class="ri-check-double-line"></i>
+                                <span>Advocacy Campaigns</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="program-image">
+                        <img src="images/6.jpg" alt="Peace-Building and Governance">
+                    </div>
+                </div>
+                
+                <div class="sub-programs">
+                    <div class="sub-program-card">
+                        <h4><i class="ri-team-line"></i>Inclusive Peace and Governance</h4>
+                        <p>APDFE’s peace-building and governance program promotes inclusive dialogue, local leadership, and civic engagement. We train women and youth in conflict resolution, non-violent communication, and leadership skills, while supporting local peace committees and participatory governance structures. Through advocacy and awareness campaigns, we promote transparency, accountability, and the inclusion of marginalized voices in peace-building efforts, believing that sustainable peace must be rooted in justice, equity, and community ownership.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Impact Stats -->
+            <div class="impact-stats">
+                <div class="container">
+                    <div class="stats-grid">
+                        <div class="stat-box">
+                            <i class="ri-heart-3-line"></i>
+                            <div class="stat-number">50,000+</div>
+                            <div class="stat-label">Lives Directly Impacted</div>
+                        </div>
+                        <div class="stat-box">
+                            <i class="ri-team-line"></i>
+                            <div class="stat-number">4</div>
+                            <div class="stat-label">Countries of Operation</div>
+                        </div>
+                        <div class="stat-box">
+                            <i class="ri-women-line"></i>
+                            <div class="stat-number">65%</div>
+                            <div class="stat-label">Women & Girls Reached</div>
+                        </div>
+                        <div class="stat-box">
+                            <i class="ri-global-line"></i>
+                            <div class="stat-number">120+</div>
+                            <div class="stat-label">Communities Served</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- CTA Section -->
+            <div class="cta-section">
+                <div class="container">
+                    <div class="cta-content">
+                        <h2>Join Us in Creating Lasting Change</h2>
+                        <p>Your support helps us reach more women, children, and communities in need across Central Africa.</p>
+                        <div class="cta-buttons">
+                            <a href="donate.html" class="btn btn-primary"><i class="ri-heart-line"></i> Donate Now</a>
+                            <a href="volunteer.html" class="btn btn-secondary"><i class="ri-user-add-line"></i> Get Involved</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-section">
+                    <h3>A.P.D.F.E</h3>
+                    <p>Building Better Futures Together across Central Africa through health, education, empowerment, and peace-building.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="programs.html">Programs</a></li>
+                        <li><a href="impact.html">Impact</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Get Involved</h3>
+                    <ul>
+                        <li><a href="donate.html">Donate</a></li>
+                        <li><a href="volunteer.html">Volunteer</a></li>
+                        <li><a href="partner.html">Partner With Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="ri-mail-line"></i> info@apdfe.org</li>
+                        <li><i class="ri-phone-line"></i> +250 788 123 456</li>
+                        <li><i class="ri-map-pin-line"></i> Kigali, Rwanda (Head Office)</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                © 2025 A.P.D.F.E | All Rights Reserved
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.getElementById('menuToggle').addEventListener('click', function () {
+            document.getElementById('menu').classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

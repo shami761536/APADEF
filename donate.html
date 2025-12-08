@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donate - A.P.D.F.E</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+            background: #f8f9fa;
+        }
+        
+        /* Header Styles */
+        header {
+            background: white;
+            color: #333;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .top-bar {
+            background: #f8f9fa;
+            padding: 4px 0;
+            font-size: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .top-bar .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .contact-info { display: flex; gap: 25px; }
+        .contact-info span { display: flex; align-items: center; gap: 5px; color: #555; }
+        .social-links { display: flex; gap: 15px; }
+        .social-links a { color: #555; text-decoration: none; transition: color 0.3s; }
+        .social-links a:hover { color: #3498db; }
+
+        .main-header {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo { display: flex; align-items: center; gap: 12px; margin-right: auto; }
+        .logo img {
+            width: 85px; 
+            height: auto;
+            object-fit: contain;
+        }
+        
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+        
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            transition: all 0.3s;
+        }
+        .logo-text h1 { font-size: 22px; font-weight: 700; margin-bottom: 0; color: #3498db; line-height: 1; }
+        .logo-text p { font-size: 10px; color: #666; letter-spacing: 0.5px; line-height: 1; margin-top: 3px; }
+
+        nav ul {
+            display: flex; list-style: none; gap: 18px; align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li a {
+            color: #333; text-decoration: none; font-weight: 500;
+            font-size: 13px;
+            transition: color 0.3s; position: relative;
+            line-height: 1;
+            padding: 3px 0;
+        }
+        nav ul li a.active {
+            color: #3498db;
+        }
+        nav ul li a::after {
+            content: ''; position: absolute; bottom: 0; left: 0;
+            width: 0; height: 2px; background: #3498db; transition: width 0.3s;
+        }
+        nav ul li a.active::after {
+            width: 100%;
+        }
+        nav ul li a:hover::after { width: 100%; }
+        nav ul li a:hover { color: #3498db; }
+
+        .donate-btn {
+            background: #3498db; color: white; padding: 8px 18px;
+            border-radius: 25px; font-weight: 600; font-size: 13px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            line-height: 1;
+        }
+        .donate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52,152,219,0.4);
+            background: #2980b9;
+        }
+
+        /* Donation Hero */
+        .donation-hero {
+            background: #3498db;
+            color: white;
+            padding: 80px 20px 60px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .donation-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        .donation-hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        .donation-hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Main Content */
+        .donation-container {
+            max-width: 1200px;
+            margin: -40px auto 80px;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 400px;
+            gap: 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Donation Form Card */
+        .donation-form-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+        .donation-form-card h2 {
+            font-size: 32px;
+            color: #3498db;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .donation-form-card h2 i {
+            font-size: 36px;
+        }
+
+        /* Amount Selection */
+        .amount-section {
+            margin-bottom: 35px;
+        }
+        .amount-section h3 {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        .amount-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .amount-option {
+            position: relative;
+        }
+        .amount-option input[type="radio"] {
+            display: none;
+        }
+        .amount-option label {
+            display: block;
+            padding: 20px;
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-weight: 600;
+            font-size: 20px;
+            color: #333;
+        }
+        .amount-option input[type="radio"]:checked + label {
+            background: #3498db;
+            color: white;
+            border-color: #3498db;
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(52,152,219,0.3);
+        }
+        .amount-option label:hover {
+            border-color: #3498db;
+            transform: translateY(-3px);
+        }
+
+        .custom-amount {
+            position: relative;
+        }
+        .custom-amount input {
+            width: 100%;
+            padding: 15px 15px 15px 35px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 18px;
+            transition: all 0.3s;
+        }
+        .custom-amount input:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52,152,219,0.1);
+        }
+        .custom-amount::before {
+            content: '$';
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 18px;
+            font-weight: 600;
+            color: #666;
+        }
+
+        /* Donation Type */
+        .donation-type {
+            margin-bottom: 35px;
+        }
+        .type-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .type-option input[type="radio"] {
+            display: none;
+        }
+        .type-option label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            padding: 25px;
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .type-option label i {
+            font-size: 32px;
+            color: #3498db;
+        }
+        .type-option label span {
+            font-weight: 600;
+            font-size: 16px;
+        }
+        .type-option input[type="radio"]:checked + label {
+            background: #3498db;
+            color: white;
+            border-color: #3498db;
+            transform: scale(1.05);
+        }
+        .type-option input[type="radio"]:checked + label i {
+            color: white;
+        }
+        .type-option label:hover {
+            border-color: #3498db;
+            transform: translateY(-3px);
+        }
+
+        /* Form Fields */
+        .form-group {
+            margin-bottom: 25px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
+        }
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 15px;
+            transition: all 0.3s;
+        }
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52,152,219,0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        /* Payment Methods */
+        .payment-methods {
+            margin-bottom: 35px;
+        }
+        .payment-options-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .payment-option-item {
+            position: relative;
+        }
+        .payment-option-item input[type="radio"] {
+            display: none;
+        }
+        .payment-option-item label {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 20px;
+            background: #f8f9fa;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        .payment-option-item label i {
+            font-size: 32px;
+            color: #3498db;
+        }
+        .payment-option-item label .payment-info {
+            flex: 1;
+        }
+        .payment-option-item label .payment-name {
+            font-weight: 600;
+            font-size: 16px;
+            color: #333;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .payment-option-item label .payment-desc {
+            font-size: 13px;
+            color: #666;
+        }
+        .payment-option-item input[type="radio"]:checked + label {
+            background: white;
+            border-color: #3498db;
+            box-shadow: 0 5px 20px rgba(52,152,219,0.2);
+        }
+        .payment-option-item input[type="radio"]:checked + label i {
+            color: #3498db;
+        }
+        .payment-option-item label:hover {
+            border-color: #3498db;
+            transform: translateX(5px);
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 10px 30px rgba(52,152,219,0.3);
+        }
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(52,152,219,0.4);
+            background: #2980b9;
+        }
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+
+        /* Sidebar */
+        .donation-sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .impact-card,
+        .stats-card,
+        .security-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+
+        .impact-card h3,
+        .stats-card h3,
+        .security-card h3 {
+            font-size: 22px;
+            color: #3498db;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .impact-item {
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            border-left: 4px solid #3498db;
+        }
+        .impact-item:last-child {
+            margin-bottom: 0;
+        }
+        .impact-amount {
+            font-size: 24px;
+            font-weight: bold;
+            color: #3498db;
+            margin-bottom: 5px;
+        }
+        .impact-description {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .stat-row:last-child {
+            border-bottom: none;
+        }
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+        }
+        .stat-value {
+            font-size: 20px;
+            font-weight: bold;
+            color: #3498db;
+        }
+
+        .security-features {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .security-feature {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .security-feature i {
+            font-size: 24px;
+            color: #3498db;
+        }
+        .security-feature span {
+            font-size: 14px;
+            color: #666;
+        }
+
+        /* Success Message */
+        .success-message {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+            z-index: 10000;
+            max-width: 500px;
+            animation: slideIn 0.5s ease-out;
+        }
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -60%);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+        }
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: #3498db;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            animation: scaleUp 0.5s ease-out 0.2s both;
+        }
+        @keyframes scaleUp {
+            from {
+                transform: scale(0);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+        .success-icon i {
+            font-size: 45px;
+            color: white;
+        }
+        .success-message h2 {
+            font-size: 32px;
+            color: #3498db;
+            margin-bottom: 15px;
+        }
+        .success-message p {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 25px;
+        }
+        .overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.7);
+            z-index: 9999;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .top-bar { display: none; }
+            .menu-toggle { display: flex; }
+            nav ul {
+                flex-direction: column;
+                gap: 15px;
+                display: none;
+                width: 100%;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                background: white;
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+            nav ul.active { display: flex; }
+            .donation-hero h1 {
+                font-size: 36px;
+            }
+            .donation-hero p {
+                font-size: 16px;
+            }
+            .amount-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .donation-hero h1 {
+                font-size: 28px;
+            }
+            .amount-grid {
+                grid-template-columns: 1fr;
+            }
+            .type-buttons {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="top-bar">
+            <div class="container">
+                <div class="contact-info">
+                    <span><i class="ri-mail-line"></i> info@apdfe.org</span>
+                    <span><i class="ri-phone-line"></i> +250 788 123 456</span>
+                </div>
+                <div class="social-links">
+                    <a href="#" title="Facebook"><i class="ri-facebook-fill"></i></a>
+                    <a href="#" title="Twitter"><i class="ri-twitter-x-fill"></i></a>
+                    <a href="#" title="Instagram"><i class="ri-instagram-line"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="main-header">
+            <div class="logo">
+                <img src="images/logo.jpg" alt="A.P.D.F.E Logo">
+                <div class="logo-text">
+                    <h1>A.P.D.F.E</h1>
+                    <p>Building Better Futures Together</p>
+                </div>
+            </div>
+            <div class="menu-toggle" onclick="document.getElementById('menu').classList.toggle('active')">
+                <span></span><span></span><span></span>
+            </div>
+            <nav>
+                <ul id="menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="programs.html">Programs</a></li>
+                    <li><a href="impact.html">Impact</a></li>
+                    <li><a href="volunteer.html">Get Involved</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="donate.html" class="donate-btn active">Donate Now</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="donation-hero">
+        <h1>Make a Difference Today</h1>
+        <p>Your generosity transforms lives. Every donation brings hope, education, and opportunity to those who need it most.</p>
+    </div>
+
+    <div class="donation-container">
+        <div class="donation-form-card">
+            <h2><i class="ri-heart-fill"></i> Donation Details</h2>
+            
+            <form id="donationForm">
+                <div class="amount-section">
+                    <h3>Select Amount</h3>
+                    <div class="amount-grid">
+                        <div class="amount-option">
+                            <input type="radio" id="amount25" name="amount" value="25">
+                            <label for="amount25">$25</label>
+                        </div>
+                        <div class="amount-option">
+                            <input type="radio" id="amount50" name="amount" value="50" checked>
+                            <label for="amount50">$50</label>
+                        </div>
+                        <div class="amount-option">
+                            <input type="radio" id="amount100" name="amount" value="100">
+                            <label for="amount100">$100</label>
+                        </div>
+                        <div class="amount-option">
+                            <input type="radio" id="amount250" name="amount" value="250">
+                            <label for="amount250">$250</label>
+                        </div>
+                        <div class="amount-option">
+                            <input type="radio" id="amount500" name="amount" value="500">
+                            <label for="amount500">$500</label>
+                        </div>
+                        <div class="amount-option">
+                            <input type="radio" id="amount1000" name="amount" value="1000">
+                            <label for="amount1000">$1000</label>
+                        </div>
+                    </div>
+                    <div class="custom-amount">
+                        <input type="number" id="customAmount" placeholder="Enter custom amount" min="1">
+                    </div>
+                </div>
+
+                <div class="donation-type">
+                    <h3>Donation Type</h3>
+                    <div class="type-buttons">
+                        <div class="type-option">
+                            <input type="radio" id="oneTime" name="donationType" value="one-time" checked>
+                            <label for="oneTime">
+                                <i class="ri-hand-heart-line"></i>
+                                <span>One Time</span>
+                            </label>
+                        </div>
+                        <div class="type-option">
+                            <input type="radio" id="monthly" name="donationType" value="monthly">
+                            <label for="monthly">
+                                <i class="ri-refresh-line"></i>
+                                <span>Monthly</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <h3 style="margin-bottom: 20px;">Personal Information</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name *</label>
+                        <input type="text" id="firstName" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name *</label>
+                        <input type="text" id="lastName" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address *</label>
+                    <input type="email" id="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone">
+                </div>
+
+                <div class="form-group">
+                    <label for="country">Country *</label>
+                    <select id="country" required>
+                        <option value="">Select Country</option>
+                        <option value="Rwanda">Rwanda</option>
+                        <option value="Kenya">Kenya</option>
+                        <option value="Uganda">Uganda</option>
+                        <option value="Tanzania">Tanzania</option>
+                        <option value="USA">United States</option>
+                        <option value="UK">United Kingdom</option>
+                        <option value="Canada">Canada</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+
+                <div class="payment-methods">
+                    <h3>Payment Method</h3>
+                    <div class="payment-options-container">
+                        <div class="payment-option-item">
+                            <input type="radio" id="card" name="payment" value="card" checked>
+                            <label for="card">
+                                <i class="ri-bank-card-line"></i>
+                                <div class="payment-info">
+                                    <span class="payment-name">Credit/Debit Card</span>
+                                    <span class="payment-desc">Visa, Mastercard, American Express</span>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="payment-option-item">
+                            <input type="radio" id="paypal" name="payment" value="paypal">
+                            <label for="paypal">
+                                <i class="ri-paypal-line"></i>
+                                <div class="payment-info">
+                                    <span class="payment-name">PayPal</span>
+                                    <span class="payment-desc">Fast and secure payment with PayPal</span>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="payment-option-item">
+                            <input type="radio" id="mobileMoney" name="payment" value="mobile">
+                            <label for="mobileMoney">
+                                <i class="ri-smartphone-line"></i>
+                                <div class="payment-info">
+                                    <span class="payment-name">Mobile Money</span>
+                                    <span class="payment-desc">MTN, Airtel, and other mobile payment options</span>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="payment-option-item">
+                            <input type="radio" id="bankTransfer" name="payment" value="bank">
+                            <label for="bankTransfer">
+                                <i class="ri-bank-line"></i>
+                                <div class="payment-info">
+                                    <span class="payment-name">Bank Transfer</span>
+                                    <span class="payment-desc">Direct bank account transfer</span>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="payment-option-item">
+                            <input type="radio" id="crypto" name="payment" value="crypto">
+                            <label for="crypto">
+                                <i class="ri-bit-coin-line"></i>
+                                <div class="payment-info">
+                                    <span class="payment-name">Cryptocurrency</span>
+                                    <span class="payment-desc">Bitcoin, Ethereum, and other cryptocurrencies</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    <i class="ri-secure-payment-line"></i>
+                    <span>Complete Donation</span>
+                </button>
+            </form>
+        </div>
+
+        <div class="donation-sidebar">
+            <div class="impact-card">
+                <h3><i class="ri-lightbulb-flash-line"></i> Your Impact</h3>
+                <div class="impact-item">
+                    <div class="impact-amount">$25</div>
+                    <div class="impact-description">Provides school supplies for 5 children</div>
+                </div>
+                <div class="impact-item">
+                    <div class="impact-amount">$50</div>
+                    <div class="impact-description">Funds a week of meals for 10 families</div>
+                </div>
+                <div class="impact-item">
+                    <div class="impact-amount">$100</div>
+                    <div class="impact-description">Supports a month of after-school programs</div>
+                </div>
+                <div class="impact-item">
+                    <div class="impact-amount">$250</div>
+                    <div class="impact-description">Provides medical care for 20 people</div>
+                </div>
+            </div>
+
+            <div class="stats-card">
+                <h3><i class="ri-line-chart-line"></i> Recent Impact</h3>
+                <div class="stat-row">
+                    <span class="stat-label">This Month</span>
+                    <span class="stat-value">$45,230</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Total Donors</span>
+                    <span class="stat-value">1,247</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Lives Impacted</span>
+                    <span class="stat-value">5,000+</span>
+                </div>
+            </div>
+
+            <div class="security-card">
+                <h3><i class="ri-shield-check-line"></i> Secure Donation</h3>
+                <div class="security-features">
+                    <div class="security-feature">
+                        <i class="ri-lock-line"></i>
+                        <span>SSL encrypted payment</span>
+                    </div>
+                    <div class="security-feature">
+                        <i class="ri-checkbox-circle-line"></i>
+                        <span>100% tax deductible</span>
+                    </div>
+                    <div class="security-feature">
+                        <i class="ri-heart-pulse-line"></i>
+                        <span>Directly supports programs</span>
+                    </div>
+                    <div class="security-feature">
+                        <i class="ri-file-text-line"></i>
+                        <span>Instant email receipt</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay"></div>
+    <div class="success-message" id="successMessage">
+        <div class="success-icon">
+            <i class="ri-check-line"></i>
+        </div>
+        <h2>Thank You!</h2>
+        <p>Your generous donation of <strong id="donatedAmount">$50</strong> has been received. You're making a real difference in people's lives.</p>
+        <button class="submit-btn" onclick="closeSuccess()">
+            <span>Close</span>
+        </button>
+    </div>
+
+    <script>
+        // Handle custom amount input
+        const customAmountInput = document.getElementById('customAmount');
+        const amountRadios = document.querySelectorAll('input[name="amount"]');
+
+        customAmountInput.addEventListener('input', function() {
+            if (this.value) {
+                amountRadios.forEach(radio => radio.checked = false);
+            }
+        });
+
+        amountRadios.forEach(radio => {
+            radio.addEventListener('change', function() {
+                if (this.checked) {
+                    customAmountInput.value = '';
+                }
+            });
+        });
+
+        // Handle

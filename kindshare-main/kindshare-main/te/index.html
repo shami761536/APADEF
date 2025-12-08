@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+
+
+        <div class="animation"></div>
+
+
+        <div class="form">
+            <div class="above-txt">
+
+                <div class="welcome">
+                    <div class="left">
+                        <p>Welcome back</p>
+                        <h1>Sign in to continue donating</h1>
+                        <p>Access your feed, wallet insights, and creator dashboards in one <br> place</p>
+                    </div>
+                    <div class="right">
+                        <p>Step 1 of 2</p>
+                        <div class="dot">
+                            <div></div>
+                            <div></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="middle">
+                    <div class="left-btn">
+                        <p>Login</p>
+                        <p>Sign up</p>
+                    </div>
+                    <div class="right-sid">
+                        <input type="checkbox" name="" id="">
+                        Continue with Google
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="form-cont">
+                <div class="banner">
+                    <p><b>Demo mode -</b> sign in with any email to explore the platform</p>
+                    <p>?</p>
+                </div>
+
+
+                <form action="/feed.html">
+                    <div class="lb">
+                        <label for=""><p>Email</p> <p>Use the email linked to your account</p></label>
+                        <input type="email" placeholder="you@example.com">
+                    </div>
+
+                    <div class="lb">
+                        <label for=""><p>Password</p> <p>Atleast 8 characters</p></label>
+                        <input type="password" placeholder="********">
+                    </div>
+
+                    <div class="mid">
+                        <p><input type="checkbox"> keep me signed in</p>
+                        <p>Forgot password?</p>
+                    </div>
+
+                    <div class="btn">
+                        <button>Continune to platform</button>
+                        <p>Use magic link</p>
+                    </div>
+
+                    <p class="p">By loggin in, you agree to our terms and privacy.</p>
+
+                </form>
+            </div>
+
+
+        </div>
+    </div>
+
+
+
+    <script src="https://unpkg.com/lottie-web/build/player/lottie.min.js"></script>
+<script>
+    lottie.loadAnimation({
+        container: document.querySelector('.animation'),
+        renderer: 'svg',
+        loop: true,
+        autoplay: true,
+        path: 'Animated Dashboards.json'
+    });
+</script>
+
+
+
+</body>
+</html>

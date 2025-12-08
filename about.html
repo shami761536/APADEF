@@ -36,7 +36,7 @@
 
         /* HERO */
         .page-header{
-            background:linear-gradient(135deg,rgba(52,152,219,0.95),rgba(46,204,113,0.85)),
+            background:linear-gradient(135deg,rgba(52,152,219,0.95),rgba(41,128,185,0.85)),
                        url('https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=1600&q=80');
             background-size:cover;background-position:center;background-attachment:fixed;
             padding:140px 20px 100px;text-align:center;color:white;position:relative;overflow:hidden;
@@ -146,7 +146,7 @@
             position: absolute;
             top: 20px;
             left: 20px;
-            background: linear-gradient(135deg, #3498db, #2ecc71);
+            background: linear-gradient(135deg, #3498db, #2980b9);
             color: white;
             padding: 12px 25px;
             border-radius: 50px;
@@ -164,6 +164,7 @@
             font-size: 48px;
             margin-bottom: 15px;
             display: block;
+            color: #2980b9;
         }
 
         .story-content h3 {
@@ -220,7 +221,7 @@
         .founders-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(350px,1fr));gap:50px;margin:80px 0;}
         .founder-card{background:white;padding:40px;border-radius:20px;box-shadow:0 15px 40px rgba(0,0,0,0.1);
                     text-align:center;transition:all .4s;position:relative;overflow:hidden;}
-        .founder-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:6px;background:linear-gradient(90deg,#3498db,#2ecc71);}
+        .founder-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:6px;background:linear-gradient(90deg,#3498db,#2980b9);}
         .founder-card:hover{transform:translateY(-10px);box-shadow:0 25px 60px rgba(52,152,219,0.3);}
         .founder-image{width:180px;height:180px;border-radius:50%;object-fit:cover;margin:0 auto 25px;
                     border:6px solid #e8f5e9;box-shadow:0 10px 30px rgba(0,0,0,0.15);transition:all 0.4s;}
@@ -230,9 +231,42 @@
         .founder-card h4{font-size:18px;color:#2ecc71;margin-bottom:20px;font-weight:600;}
         .founder-card p{font-size:16px;color:#555;line-height:1.9;}
 
+        /* STAFF */
+        .staff-section { padding: 80px 20px; background: #f8fbff; }
+        .staff-container { max-width:1200px; margin:0 auto; }
+        .staff-title { text-align:center; font-size:44px; color:#3498db; margin-bottom:10px; }
+        .staff-subtitle { text-align:center; color:#666; max-width:900px; margin:10px auto 40px; font-size:16px; }
+        .staff-grid { display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:20px; }
+        .staff-card { background:white; border-radius:14px; padding:18px; text-align:center; box-shadow:0 8px 30px rgba(0,0,0,0.06); transition:transform .32s, box-shadow .32s; overflow:hidden; }
+        .staff-avatar { width:110px; height:110px; border-radius:50%; object-fit:cover; margin:0 auto 12px; border:6px solid #eaf6ff; box-shadow:0 8px 20px rgba(52,152,219,0.06); }
+        .staff-name { font-size:16px; font-weight:700; color:#2c3e50; margin-bottom:6px; }
+        .staff-role { font-size:13px; color:#7b8a99; margin-bottom:8px; }
+        .staff-country { font-size:13px; color:#3498db; font-weight:600; }
+        .staff-card:hover { transform: translateY(-8px); box-shadow:0 20px 50px rgba(0,0,0,0.10); }
+        .staff-actions { margin-top:12px; display:flex; gap:8px; justify-content:center; }
+        .staff-btn { padding:8px 12px; border-radius:999px; background:#3498db; color:white; font-size:13px; text-decoration:none; display:inline-block; }
+
+        /* STAFF MODAL */
+        .modal-overlay { position:fixed; inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;padding:20px;z-index:2000; }
+        .modal-overlay.active { display:flex; }
+        .modal { background:white;border-radius:12px;max-width:860px;width:100%;box-shadow:0 30px 80px rgba(0,0,0,0.4);overflow:hidden;display:flex;gap:0;align-items:stretch;position:relative; }
+        .modal-left { flex:0 0 280px;background:linear-gradient(135deg,#3498db,#2980b9);padding:32px;color:white;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px; }
+        .modal-left img{width:160px;height:160px;border-radius:50%;object-fit:cover;border:6px solid rgba(255,255,255,0.15);box-shadow:0 10px 30px rgba(0,0,0,0.2);} 
+        .modal-right{padding:28px;flex:1;position:relative;}
+        .modal-right h3{font-size:22px;color:#2c3e50;margin-bottom:6px;}
+        .modal-right p{color:#555;line-height:1.8;margin-bottom:12px;}
+        .modal-close{position:absolute;top:12px;right:14px;background:transparent;border:none;font-size:22px;color:#7b8a99;cursor:pointer;padding:6px;border-radius:6px;}
+        .modal-close:hover{background:#f0f0f0;color:#333;}
+        @media(max-width:780px){ .modal{flex-direction:column;} .modal-left{flex:0 0 auto;padding:22px;} .modal-left img{width:120px;height:120px;} }
+        /* small tweaks for very small screens */
+        @media (max-width:480px) {
+            .staff-avatar { width:88px; height:88px; }
+            .staff-title { font-size:32px; }
+        }
+
         /* IMPACT */
         .impact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:40px;margin-top:80px;}
-        .impact-card{background:linear-gradient(135deg,#3498db,#2ecc71);color:white;padding:50px;border-radius:20px;text-align:center;
+        .impact-card{background:linear-gradient(135deg,#3498db,#2980b9);color:white;padding:50px;border-radius:20px;text-align:center;
                     box-shadow:0 15px 40px rgba(0,0,0,0.2);transition:all .4s;}
         .impact-card:hover{transform:translateY(-10px);box-shadow:0 25px 60px rgba(0,0,0,0.3);}
         .impact-number{font-size:62px;font-weight:900;margin-bottom:10px;}
@@ -256,7 +290,7 @@
         .country-card:hover .stat-badge{background:#2ecc71;color:white;}
 
         /* CTA */
-        .cta-section{background:linear-gradient(135deg,#3498db,#2ecc71);padding:100px 20px;text-align:center;color:white;}
+        .cta-section{background:linear-gradient(135deg,#3498db,#2980b9);padding:100px 20px;text-align:center;color:white;}
         .cta-section h2{font-size:48px;margin-bottom:20px;}
         .cta-section p{font-size:19px;max-width:800px;margin:0 auto 40px;}
         .btn-large{display:inline-block;background:white;color:#3498db;padding:18px 40px;border-radius:50px;
@@ -336,6 +370,23 @@
         <p>From survivors to changemakers — empowering women and children in conflict-affected Central Africa since 2019</p>
     </section>
 
+    <!-- STAFF PROFILE MODAL -->
+    <div class="modal-overlay" id="staffModal" aria-hidden="true">
+        <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalName">
+            <div class="modal-left">
+                <img id="modalAvatar" src="" alt="Staff avatar">
+                <div id="modalRole" style="font-weight:700;font-size:16px;color:rgba(255,255,255,0.95);"></div>
+                <div id="modalCountry" style="font-size:13px;color:rgba(255,255,255,0.9);"></div>
+            </div>
+            <div class="modal-right">
+                <button class="modal-close" id="closeStaffModal" aria-label="Close profile">✕</button>
+                <h3 id="modalName">Name</h3>
+                <p id="modalBio">Biography not available yet. Replace this text by adding a `data-bio` attribute to the staff card with a short description (e.g. program focus, years of experience).</p>
+                <p id="modalMore" style="font-size:14px;color:#777;margin-top:8px;"></p>
+            </div>
+        </div>
+    </div>
+
     <!-- WHO WE ARE -->
     <section class="section">
         <div class="container">
@@ -378,6 +429,152 @@
         </div>
     </section>
 
+    
+
+    <!-- STAFF -->
+    <section class="staff-section">
+        <div class="staff-container container">
+            <h2 class="staff-title">Our Regional Team</h2>
+            <p class="staff-subtitle">A dedicated, diverse team of field experts and leaders across Central Africa and beyond. (Placeholder photos — you can replace these later.)</p>
+
+            <div class="staff-grid">
+                <div class="staff-card">
+                    <img class="staff-avatar" src="https://randomuser.me/api/portraits/women/44.jpg" alt="Amina - Rwanda">
+                    <div class="staff-name">Amina N.</div>
+                    <div class="staff-role">Programs Director</div>
+                    <div class="staff-country">Rwanda</div>
+                    <div class="staff-actions"><a class="staff-btn" href="#">Profile</a></div>
+                </div>
+                <div class="staff-card">
+                    <img class="staff-avatar" src="https://randomuser.me/api/portraits/men/65.jpg" alt="John - Kenya">
+                    <div class="staff-name">John K.</div>
+                    <div class="staff-role">Field Coordinator</div>
+                    <div class="staff-country">Kenya</div>
+                    <div class="staff-actions"><a class="staff-btn" href="#">Profile</a></div>
+                </div>
+                <div class="staff-card">
+                    <img class="staff-avatar" src="https://randomuser.me/api/portraits/women/68.jpg" alt="Grace - Uganda">
+                    <div class="staff-name">Grace M.</div>
+                    <div class="staff-role">MHPSS Lead</div>
+                    <div class="staff-country">Uganda</div>
+                    <div class="staff-actions"><a class="staff-btn" href="#">Profile</a></div>
+                </div>
+                <div class="staff-card">
+                    <img class="staff-avatar" src="https://randomuser.me/api/portraits/men/12.jpg" alt="Pierre - DRC">
+                    <div class="staff-name">Pierre L.</div>
+                    <div class="staff-role">Logistics Manager</div>
+                    <div class="staff-country">DRC</div>
+                    <div class="staff-actions"><a class="staff-btn" href="#">Profile</a></div>
+                </div>
+                <div class="staff-card">
+                    <img class="staff-avatar" src="https://randomuser.me/api/portraits/women/22.jpg" alt="Marie - CAR">
+                    <div class="staff-name">Marie T.</div>
+                    <div class="staff-role">Safe Spaces Coord.</div>
+                    <div class="staff-country">Central African Rep.</div>
+                    <div class="staff-actions"><a class="staff-btn" href="#">Profile</a></div>
+                </div>
+                <div class="staff-card">
+                    <img class="staff-avatar" src="https://randomuser.me/api/portraits/men/23.jpg" alt="Emmanuel - Congo">
+                    <div class="staff-name">Emmanuel B.</div>
+                    <div class="staff-role">Finance Officer</div>
+                    <div class="staff-country">Republic of Congo</div>
+                    <div class="staff-actions"><a class="staff-btn" href="#">Profile</a></div>
+                </div>
+                <div class="staff-card">
+                    <img class="staff-avatar" src="https://randomuser.me/api/portraits/women/39.jpg" alt="Chantal - Cameroon">
+                    <div class="staff-name">Chantal R.</div>
+                    <div class="staff-role">Health Program Lead</div>
+                    <div class="staff-country">Cameroon</div>
+                    <div class="staff-actions"><a class="staff-btn" href="#">Profile</a></div>
+                </div>
+                <div class="staff-card">
+                    <img class="staff-avatar" src="https://randomuser.me/api/portraits/men/31.jpg" alt="Samuel - Tanzania">
+                    <div class="staff-name">Samuel O.</div>
+                    <div class="staff-role">Monitoring Officer</div>
+                    <div class="staff-country">Tanzania</div>
+                    <div class="staff-actions"><a class="staff-btn" href="#">Profile</a></div>
+                </div>
+                <div class="staff-card">
+                    <img class="staff-avatar" src="https://randomuser.me/api/portraits/women/11.jpg" alt="Fatou - Senegal">
+                    <div class="staff-name">Fatou S.</div>
+                    <div class="staff-role">Communications</div>
+                    <div class="staff-country">Senegal</div>
+                    <div class="staff-actions"><a class="staff-btn" href="#">Profile</a></div>
+                </div>
+                <div class="staff-card">
+                    <img class="staff-avatar" src="https://randomuser.me/api/portraits/men/9.jpg" alt="Kwame - Ghana">
+                    <div class="staff-name">Kwame A.</div>
+                    <div class="staff-role">M&E Specialist</div>
+                    <div class="staff-country">Ghana</div>
+                    <div class="staff-actions"><a class="staff-btn" href="#">Profile</a></div>
+                </div>
+                <div class="staff-card">
+                    <img class="staff-avatar" src="https://randomuser.me/api/portraits/women/14.jpg" alt="Aisha - Nigeria">
+                    <div class="staff-name">Aisha N.</div>
+                    <div class="staff-role">Education Coord.</div>
+                    <div class="staff-country">Nigeria</div>
+                    <div class="staff-actions"><a class="staff-btn" href="#">Profile</a></div>
+                </div>
+                <div class="staff-card">
+                    <img class="staff-avatar" src="https://randomuser.me/api/portraits/men/44.jpg" alt="Hassan - Mali">
+                    <div class="staff-name">Hassan D.</div>
+                    <div class="staff-role">Agriculture Specialist</div>
+                    <div class="staff-country">Mali</div>
+                    <div class="staff-actions"><a class="staff-btn" href="#">Profile</a></div>
+                </div>
+                <div class="staff-card">
+                    <img class="staff-avatar" src="https://randomuser.me/api/portraits/women/27.jpg" alt="Selam - Ethiopia">
+                    <div class="staff-name">Selam G.</div>
+                    <div class="staff-role">Advocacy Lead</div>
+                    <div class="staff-country">Ethiopia</div>
+                    <div class="staff-actions"><a class="staff-btn" href="#">Profile</a></div>
+                </div>
+                <div class="staff-card">
+                    <img class="staff-avatar" src="https://randomuser.me/api/portraits/men/17.jpg" alt="Abdi - Somalia">
+                    <div class="staff-name">Abdi M.</div>
+                    <div class="staff-role">Programs Officer</div>
+                    <div class="staff-country">Somalia</div>
+                    <div class="staff-actions"><a class="staff-btn" href="#">Profile</a></div>
+                </div>
+                <div class="staff-card">
+                    <img class="staff-avatar" src="https://randomuser.me/api/portraits/women/5.jpg" alt="Ruth - South Sudan">
+                    <div class="staff-name">Ruth K.</div>
+                    <div class="staff-role">Protection Lead</div>
+                    <div class="staff-country">South Sudan</div>
+                    <div class="staff-actions"><a class="staff-btn" href="#">Profile</a></div>
+                </div>
+                <div class="staff-card">
+                    <img class="staff-avatar" src="https://randomuser.me/api/portraits/men/6.jpg" alt="Omar - Sudan">
+                    <div class="staff-name">Omar H.</div>
+                    <div class="staff-role">Operations Manager</div>
+                    <div class="staff-country">Sudan</div>
+                    <div class="staff-actions"><a class="staff-btn" href="#">Profile</a></div>
+                </div>
+                <div class="staff-card">
+                    <img class="staff-avatar" src="https://randomuser.me/api/portraits/women/2.jpg" alt="Lillian - Zambia">
+                    <div class="staff-name">Lillian Z.</div>
+                    <div class="staff-role">HR & Training</div>
+                    <div class="staff-country">Zambia</div>
+                    <div class="staff-actions"><a class="staff-btn" href="#">Profile</a></div>
+                </div>
+                <div class="staff-card">
+                    <img class="staff-avatar" src="https://randomuser.me/api/portraits/men/3.jpg" alt="Temba - Zimbabwe">
+                    <div class="staff-name">Temba S.</div>
+                    <div class="staff-role">Legal Advisor</div>
+                    <div class="staff-country">Zimbabwe</div>
+                    <div class="staff-actions"><a class="staff-btn" href="#">Profile</a></div>
+                </div>
+                <div class="staff-card">
+                    <img class="staff-avatar" src="https://randomuser.me/api/portraits/women/7.jpg" alt="Marta - Mozambique">
+                    <div class="staff-name">Marta P.</div>
+                    <div class="staff-role">Communities Lead</div>
+                    <div class="staff-country">Mozambique</div>
+                    <div class="staff-actions"><a class="staff-btn" href="#">Profile</a></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- MISSION & VISION -->
     <section class="section section-alt">
         <div class="container">
@@ -414,7 +611,7 @@
                             <img src="https://images.unsplash.com/photo-1509099836639-18ba1795216d?w=800&q=80" alt="APDFE founders launching the organization in Bangui">
                         </div>
                         <div class="story-content">
-                            <span class="story-emoji">🌱</span>
+                            <i class="ri-hand-heart-line story-emoji" aria-hidden="true"></i>
                             <h4>The Seed is Planted</h4>
                             <h3>A Vision Born from Survival</h3>
                             <p>In a small community hall in Bangui, Central African Republic, two survivors made a promise: no woman, no child should walk the path they walked—alone, unseen, unheard. Adelithe MUGABO and Princia KORONADO officially registered APDFE with just $500, a borrowed office space, and an unshakeable belief that those who survive violence can lead the healing of others.</p>
@@ -431,7 +628,7 @@
                             <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?w=800&q=80" alt="APDFE team opening women's safe space in Eastern DRC">
                         </div>
                         <div class="story-content">
-                            <span class="story-emoji">🚀</span>
+                            <i class="ri-rocket-line story-emoji" aria-hidden="true"></i>
                             <h4>Expansion Amid Crisis</h4>
                             <h3>Crossing Borders, Breaking Barriers</h3>
                             <p>As armed violence escalated in Eastern DRC, we answered the call. Our first cross-border mission took us to North Kivu, where we opened Women's Safe Spaces in displacement camps. Despite COVID-19 lockdowns and active conflict, our team—many of them survivors themselves—delivered psychosocial support, emergency supplies, and GBV response services to 8,000+ women and children.</p>
@@ -448,7 +645,7 @@
                             <img src="https://images.unsplash.com/photo-1427751840561-9852520f8ce8?w=800&q=80" alt="Women participating in vocational training program">
                         </div>
                         <div class="story-content">
-                            <span class="story-emoji">💪</span>
+                            <i class="ri-star-smile-line story-emoji" aria-hidden="true"></i>
                             <h4>From Relief to Resilience</h4>
                             <h3>Building Skills, Restoring Dignity</h3>
                             <p>We launched our Economic Empowerment Initiative, training 1,200 women in tailoring, soap-making, and small business management. Survivors who once relied on aid started businesses, hired employees, and sent their children to school. We also trained 50 community health workers and protection officers—most of them women who had survived the very violence they now help others overcome.</p>
@@ -465,7 +662,7 @@
                             <img src="https://images.unsplash.com/photo-1497215842964-222b430dc094?w=800&q=80" alt="APDFE expanding to Congo-Brazzaville and Cameroon">
                         </div>
                         <div class="story-content">
-                            <span class="story-emoji">🌍</span>
+                            <i class="ri-global-line story-emoji" aria-hidden="true"></i>
                             <h4>A Regional Movement</h4>
                             <h3>Four Countries, One Mission</h3>
                             <p>Our footprint expanded to Republic of Congo and Cameroon, serving refugees, IDPs, and host communities. We introduced mental health services, launched the Girls' Education Scholarship Program (supporting 800+ girls), and established mobile health clinics. By year's end, we had 32,000 direct beneficiaries and partnerships with 15 international organizations. APDFE was no longer a local NGO—it was a regional force.</p>
@@ -482,7 +679,7 @@
                             <img src="https://images.unsplash.com/photo-1569163139394-de4798aa62b6?w=800&q=80" alt="Climate-smart agriculture and innovation programs">
                         </div>
                         <div class="story-content">
-                            <span class="story-emoji">🌾</span>
+                            <i class="ri-leaf-line story-emoji" aria-hidden="true"></i>
                             <h4>Innovation Meets Impact</h4>
                             <h3>Adapting for the Future</h3>
                             <p>We launched Climate-Smart Agriculture training, helping 2,500 families build resilience against drought and food insecurity. Our Peace-Building Circles brought together women from opposing ethnic groups—former enemies became allies. We introduced digital literacy programs, solar energy projects, and youth entrepreneurship hubs. Total reach: 45,000+ lives transformed across 142 communities.</p>
@@ -499,7 +696,7 @@
                             <img src="https://images.unsplash.com/photo-1511632765486-a01980e01a18?w=800&q=80" alt="Women leaders and policy advocacy">
                         </div>
                         <div class="story-content">
-                            <span class="story-emoji">📢</span>
+                            <i class="ri-megaphone-line story-emoji" aria-hidden="true"></i>
                             <h4>Amplifying Voices</h4>
                             <h3>From Survivors to Policymakers</h3>
                             <p>We co-founded the Central Africa Women's Protection Network, connecting 35+ grassroots organizations across the region. APDFE staff testified before regional parliaments, advising on GBV legislation and child protection policies. Recognition poured in—but more importantly, survivors were now sitting at decision-making tables. Over 68,000 beneficiaries. 120+ staff members. Survivors leading every level of our organization.</p>
@@ -516,7 +713,7 @@
                             <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80" alt="Future vision - children in school">
                         </div>
                         <div class="story-content">
-                            <span class="story-emoji">🚀</span>
+                            <i class="ri-rocket-line story-emoji" aria-hidden="true"></i>
                             <h4>The Future is Now</h4>
                             <h3>Scaling What Works, Dreaming Bigger</h3>
                             <p>Our goal: reach 100,000 beneficiaries by year-end through expansion of renewable energy projects, trauma healing centers, and girls' scholarships. We're launching the Survivor Leadership Academy—training the next generation of humanitarian leaders. We're piloting a Women's Cooperative Bank to provide microloans without exploitative interest rates. The future isn't something we wait for—it's something we build, one empowered woman at a time.</p>
@@ -530,35 +727,8 @@
         </div>
     </section>
 
-    <!-- FOUNDERS -->
-    <section class="section section-alt">
-        <div class="container">
-            <h2 class="section-title">Meet Our Founders</h2>
-            <p style="text-align:center;max-width:900px;margin:0 auto 60px;font-size:19px;color:#555;line-height:2;">Two survivors who refused to let their pain define them—and instead used it to redefine hope for thousands</p>
-            
-            <div class="founders-grid">
-                <div class="founder-card">
-                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&q=80" alt="Adelithe MUGABO" class="founder-image">
-                    <h3>Adelithe MUGABO</h3>
-                    <h4>Co-Founder & Executive Director</h4>
-                    <p><strong>Survivor of the 1994 Genocide against the Tutsi in Rwanda.</strong> Orphaned at age 7 after losing his entire immediate family. Today, he is a leading voice for child rights and gender justice across Africa, a sought-after speaker on trauma-informed humanitarian response, and living proof that survivors can lead the change they wish to see.</p>
-                    <p style="margin-top:15px;color:#2ecc71;font-style:italic;">"Our scars are our credentials. They qualify us to heal others."</p>
-                </div>
-                <div class="founder-card">
-                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a3?w=600&q=80" alt="Princia KORONADO" class="founder-image">
-                    <h3>Princia KORONADO</h3>
-                    <h4>Co-Founder & Programs Director</h4>
-                    <p><strong>Survivor of religious and intercommunal violence in the Central African Republic.</strong> A mother, women's rights advocate, and peace-builder with roots in CAR and Mauritania. She designs and oversees all of APDFE's trauma-informed programs, ensuring they reflect the lived realities of the communities we serve.</p>
-                    <p style="margin-top:15px;color:#2ecc71;font-style:italic;">"We know what it's like to lose everything. That's why we fight so fiercely to help others rebuild."</p>
-                </div>
-            </div>
-            
-            <div style="text-align:center;max-width:900px;margin:80px auto 0;font-size:20px;color:#333;line-height:2.2;padding:50px;background:white;border-radius:20px;box-shadow:0 15px 50px rgba(0,0,0,0.1);border-left:5px solid #2ecc71;">
-                <p><em><strong>"We do not work FOR survivors—we work WITH survivors. Because only those who have walked through fire know exactly where the burns hurt the most, and how best to heal them."</strong></em></p>
-                <p style="margin-top:25px;font-size:17px;color:#2ecc71;font-weight:700;">— Adelithe MUGABO & Princia KORONADO, Co-Founders</p>
-            </div>
-        </div>
-    </section>
+    
+    
 
     <!-- OUR IMPACT -->
     <section class="section">
@@ -568,19 +738,19 @@
             
             <div class="impact-grid">
                 <div class="impact-card">
-                    <div class="impact-number" data-target="68000">0</div>
+                    <div class="impact-number" data-target="68000" data-suffix="+">0</div>
                     <div class="impact-label">Women & Children Directly Reached</div>
                 </div>
                 <div class="impact-card">
-                    <div class="impact-number" data-target="4">0</div>
+                    <div class="impact-number" data-target="4" data-suffix="">0</div>
                     <div class="impact-label">Countries of Operation</div>
                 </div>
                 <div class="impact-card">
-                    <div class="impact-number" data-target="142">0</div>
+                    <div class="impact-number" data-target="142" data-suffix="">0</div>
                     <div class="impact-label">Communities Served</div>
                 </div>
                 <div class="impact-card">
-                    <div class="impact-number" data-target="87">0</div>
+                    <div class="impact-number" data-target="87" data-suffix="%">0</div>
                     <div class="impact-label">% Programs Led by Local Women & Survivors</div>
                 </div>
             </div>
@@ -772,23 +942,26 @@
 
         storyItems.forEach(item => storyObserver.observe(item));
 
-        // Animated Counter for Impact Numbers
+        // Animated Counter for Impact Numbers (robust version)
         function animateCounter(element) {
-            const target = parseInt(element.getAttribute('data-target'));   
-            const duration = 2000;
-            const increment = target / (duration / 16);
-            let current = 0;
+            const target = Number(element.getAttribute('data-target')) || 0;
+            const suffix = element.getAttribute('data-suffix') || '';
+            const duration = 1600; // ms
+            const start = performance.now();
 
-            const updateCounter = () => {
-                current += increment;
-                if (current < target) {
-                    element.textContent = Math.floor(current).toLocaleString() + (target >= 1000 ? '+' : '');
-                    requestAnimationFrame(updateCounter);
+            function step(now) {
+                const elapsed = now - start;
+                const progress = Math.min(elapsed / duration, 1);
+                const value = Math.floor(progress * target);
+                element.textContent = value.toLocaleString() + suffix;
+                if (progress < 1) {
+                    requestAnimationFrame(step);
                 } else {
-                    element.textContent = target.toLocaleString() + (target >= 1000 ? '+' : target === 87 ? '%' : '');
+                    // ensure exact final value
+                    element.textContent = target.toLocaleString() + suffix;
                 }
-            };
-            updateCounter();
+            }
+            requestAnimationFrame(step);
         }
 
         const impactObserver = new IntersectionObserver((entries) => {
@@ -807,8 +980,57 @@
 
         const impactSection = document.querySelector('.impact-grid');
         if (impactSection) {
-            impactObserver.observe(impactSection.parentElement);
+            // observe the grid itself so we reliably detect visibility
+            impactObserver.observe(impactSection);
         }
+
+        // STAFF PROFILE MODAL HANDLERS
+        (function(){
+            const staffButtons = document.querySelectorAll('.staff-btn');
+            const staffModal = document.getElementById('staffModal');
+            const modalAvatar = document.getElementById('modalAvatar');
+            const modalName = document.getElementById('modalName');
+            const modalRole = document.getElementById('modalRole');
+            const modalCountry = document.getElementById('modalCountry');
+            const modalBio = document.getElementById('modalBio');
+            const closeStaffModal = document.getElementById('closeStaffModal');
+
+            if (!staffModal) return;
+
+            staffButtons.forEach(btn => {
+                btn.addEventListener('click', function(e){
+                    e.preventDefault();
+                    const card = btn.closest('.staff-card');
+                    if (!card) return;
+                    const avatar = card.querySelector('.staff-avatar')?.src || '';
+                    const name = card.querySelector('.staff-name')?.textContent.trim() || '';
+                    const role = card.querySelector('.staff-role')?.textContent.trim() || '';
+                    const country = card.querySelector('.staff-country')?.textContent.trim() || '';
+                    const bio = card.getAttribute('data-bio') || 'Biography not available yet. Add a `data-bio` attribute to the staff card to provide a short bio.';
+
+                    modalAvatar.src = avatar;
+                    modalAvatar.alt = name;
+                    modalName.textContent = name;
+                    modalRole.textContent = role;
+                    modalCountry.textContent = country;
+                    modalBio.textContent = bio;
+
+                    staffModal.classList.add('active');
+                    staffModal.setAttribute('aria-hidden','false');
+                    document.body.style.overflow = 'hidden';
+                });
+            });
+
+            function closeModal(){
+                staffModal.classList.remove('active');
+                staffModal.setAttribute('aria-hidden','true');
+                document.body.style.overflow = '';
+            }
+
+            closeStaffModal.addEventListener('click', closeModal);
+            staffModal.addEventListener('click', function(e){ if (e.target === staffModal) closeModal(); });
+            document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && staffModal.classList.contains('active')) closeModal(); });
+        })();
     </script>
 </body>
 </html>

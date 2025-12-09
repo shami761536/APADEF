@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Impact — A.P.D.F.E</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+    <style>
+        :root{--blue-600:#2980b9;--blue-500:#3498db;--muted:#6b7785;--soft:#f6fbff}
+        *{box-sizing:border-box}
+        body{font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;line-height:1.6;color:#222;margin:0;background:#fff}
+        a{color:var(--blue-500)}
+        header{background:#fff;border-bottom:1px solid #e9eef5;position:sticky;top:0;z-index:40}
+        .container{max-width:1200px;margin:0 auto;padding:0 20px}
+
+        /* ===================== NEW NAVBAR ONLY ===================== */
+        header{background:#fff;box-shadow:0 2px 10px rgba(0,0,0,0.1);position:sticky;top:0;z-index:1000}
+        .top-bar{background:#f8f9fa;padding:4px 0;font-size:12px;border-bottom:1px solid #e0e0e0}
+        .top-bar .container{display:flex;justify-content:space-between;align-items:center}
+        .contact-info{display:flex;gap:25px}
+        .contact-info span{display:flex;align-items:center;gap:5px;color:#555}
+        .social-links{display:flex;gap:15px}
+        .social-links a{color:#555;text-decoration:none;transition:color .3s}
+        .social-links a:hover{color:#2ecc71}
+        .main-header{max-width:1200px;margin:0 auto;padding:5px 20px;display:flex;justify-content:space-between;align-items:center}
+        .logo{display:flex;align-items:center;gap:12px;margin-right:auto}
+        .logo-image{width:85px;height:auto;object-fit:contain}
+        .logo-text h1{font-size:22px;font-weight:700;margin:0;color:#3498db}
+        .logo-text p{font-size:10px;color:#666;letter-spacing:0.5px;margin-top:3px}
+        nav ul{display:flex;list-style:none;gap:18px;align-items:center;margin:0;padding:0}
+        nav ul li a{color:#333;text-decoration:none;font-weight:500;font-size:13px;transition:color .3s;position:relative;padding:3px 0}
+        nav ul li a.active{color:#2ecc71}
+        nav ul li a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:#2ecc71;transition:width .3s}
+        nav ul li a:hover::after, nav ul li a.active::after{width:100%}
+        nav ul li a:hover{color:#2ecc71}
+        .donate-btn{background:#2ecc71;color:white;padding:8px 18px;border-radius:25px;font-weight:600;font-size:13px;transition:transform .3s,box-shadow .3s}
+        .donate-btn:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(46,204,113,.4)}
+        .menu-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer}
+        .menu-toggle span{width:25px;height:3px;background:#333;transition:all .3s}
+        @media(max-width:768px){
+            .top-bar{display:none}
+            .menu-toggle{display:flex}
+            nav ul{flex-direction:column;display:none;position:absolute;top:100%;left:0;width:100%;background:white;padding:20px;box-shadow:0 5px 10px rgba(0,0,0,.1)}
+            nav ul.active{display:flex}
+        }
+        /* ========================================================= */
+
+        /* Original Impact page styles (unchanged) */
+        .hero{background:linear-gradient(180deg,rgba(41,128,185,0.95),rgba(52,152,219,0.95));color:white;padding:60px 0}
+        .hero .inner{display:flex;gap:30px;align-items:center}
+        .hero h1{font-size:36px;margin:0 0 6px;font-weight:800}
+        .hero p{margin:0;color:rgba(255,255,255,0.9);max-width:820px}
+        .hero-stats{display:flex;gap:18px;margin-top:18px;flex-wrap:wrap}
+        .stat{background:rgba(255,255,255,0.08);padding:12px 18px;border-radius:12px;text-align:center}
+        .stat strong{display:block;font-size:20px}
+        .stat span{font-size:13px;color:rgba(255,255,255,0.9)}
+
+        .chart-section{padding:44px 0}
+        .chart-card{background:linear-gradient(135deg,var(--blue-500),var(--blue-600));color:white;padding:22px;border-radius:14px;box-shadow:0 15px 40px rgba(41,128,185,0.12)}
+        .chart-tools{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px}
+        .toggle-btn{background:white;color:var(--blue-600);padding:8px 12px;border-radius:999px;border:none;cursor:pointer;font-weight:700}
+        .toggle-btn.active{background:rgba(255,255,255,0.14);color:white}
+        .chart-wrap{background:#fff;padding:18px;border-radius:12px;margin-top:12px}
+        canvas{max-width:100% !important}
+
+        .timeline{display:grid;grid-template-columns:1fr 420px;gap:30px;padding:44px 0}
+        .timeline-cards{display:flex;flex-direction:column;gap:18px}
+        .year-card{background:#fff;border-radius:12px;padding:18px;box-shadow:0 8px 30px rgba(15,30,60,0.06);display:flex;gap:14px;align-items:flex-start;cursor:pointer}
+        .year-card img{width:120px;height:80px;object-fit:cover;border-radius:8px}
+        .year-label{font-weight:800;color:var(--blue-600);font-size:18px}
+        .year-title{font-weight:700;margin:6px 0;color:#19324a}
+        .year-desc{color:var(--muted);font-size:14px}
+
+        .side-panel{position:sticky;top:90px}
+        .panel-inner{background:#fff;padding:18px;border-radius:12px;box-shadow:0 8px 30px rgba(15,30,60,0.06)}
+        .panel-inner h3{margin:0 0 8px;color:var(--blue-600)}
+        .mini{display:flex;gap:8px;flex-wrap:wrap}
+        .mini img{width:100%;height:96px;object-fit:cover;border-radius:8px}
+        .mini a{display:block;width:48%;}
+
+        .counters{display:flex;gap:18px;margin-top:18px;flex-wrap:wrap}
+        .counter{background:#fff;padding:18px;border-radius:12px;box-shadow:0 8px 30px rgba(15,30,60,0.04);flex:1;min-width:180px;text-align:center}
+        .counter .num{font-size:28px;font-weight:800;color:var(--blue-600)}
+        .counter p{margin:6px 0 0;color:var(--muted)}
+
+        .cta{background:linear-gradient(90deg,var(--blue-500),var(--blue-600));color:white;padding:40px 0;border-radius:12px;margin:30px 0}
+        .cta a{background:white;color:var(--blue-600);padding:12px 20px;border-radius:40px;font-weight:800;text-decoration:none}
+
+        @media(max-width:980px){
+            .timeline{grid-template-columns:1fr;}
+            .hero .inner{flex-direction:column}
+            .side-panel{position:relative;top:auto}
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NEW NAVBAR (exact same as your new index.html) -->
+    <header>
+        <div class="top-bar">
+            <div class="container">
+                <div class="contact-info">
+                    <span><i class="ri-mail-line"></i> info@apdfe.org</span>
+                    <span><i class="ri-phone-line"></i> +250 788 123 456</span>
+                </div>
+                <div class="social-links">
+                    <a href="#" title="Facebook"><i class="ri-facebook-fill"></i></a>
+                    <a href="#" title="Twitter"><i class="ri-twitter-x-fill"></i></a>
+                    <a href="#" title="Instagram"><i class="ri-instagram-line"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="main-header">
+            <div class="logo">
+                <img src="images/logo.jpg" alt="logo" class="logo-image">
+                <div class="logo-text">
+                    <h1>A.P.D.F.E</h1>
+                    <p>Building Better Futures Together</p>
+                </div>
+            </div>
+            <div class="menu-toggle" onclick="document.getElementById('nav-menu').classList.toggle('active')">
+                <span></span><span></span><span></span>
+            </div>
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="programs.html">Programs</a></li>
+                    <li><a href="impact.html" class="active">Impact</a></li>
+                    <li><a href="volunteer.html">Get Involved</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                    <li><a href="donate.html" class="donate-btn">Donate Now</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container inner">
+            <div style="flex:1">
+                <h1>Our Impact — 2019 to Today</h1>
+                <p>Track how APDFE has grown: from a small survivor-led initiative to a regional movement delivering trauma-informed services, safe spaces, and economic empowerment across Central Africa.</p>
+                <div class="hero-stats">
+                    <div class="stat"><strong id="statBeneficiaries">68,000+</strong><span>Beneficiaries</span></div>
+                    <div class="stat"><strong id="statCountries">4</strong><span>Countries</span></div>
+                    <div class="stat"><strong id="statCommunities">142</strong><span>Communities</span></div>
+                </div>
+            </div>
+            <div style="width:340px">
+                <div class="chart-card">
+                    <div style="display:flex;justify-content:space-between;align-items:center">
+                        <div>
+                            <div style="font-size:13px;opacity:0.9">Cumulative beneficiaries</div>
+                            <div style="font-weight:800;font-size:22px">2019 — 2025</div>
+                        </div>
+                        <div style="font-size:28px;opacity:0.9">Chart</div>
+                    </div>
+                    <div class="chart-wrap" style="margin-top:12px">
+                        <canvas id="miniChart" width="400" height="230"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <main class="container">
+        <section class="chart-section">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+                <h2 style="margin:0;color:#19324a">Progress Over Time</h2>
+                <div class="chart-tools">
+                    <button class="toggle-btn active" data-target="beneficiaries">Beneficiaries</button>
+                    <button class="toggle-btn" data-target="safeSpaces">Safe Spaces</button>
+                    <button class="toggle-btn" data-target="communities">Communities</button>
+                </div>
+            </div>
+
+            <div class="chart-wrap" style="margin-top:14px">
+                <canvas id="impactChart" height="200"></canvas>
+            </div>
+
+            <div class="counters" style="margin-top:18px">
+                <div class="counter"><div class="num" data-target="68000">0</div><p>Beneficiaries (direct)</p></div>
+                <div class="counter"><div class="num" data-target="4">0</div><p>Countries of Operation</p></div>
+                <div class="counter"><div class="num" data-target="142">0</div><p>Communities Served</p></div>
+                <div class="counter"><div class="num" data-target="87">0</div><p>% Programs Led by Local Women & Survivors</p></div>
+            </div>
+        </section>
+
+        <section class="timeline">
+            <div class="timeline-cards">
+                <div class="year-card" data-year="2019">
+                    <img src="images/1 (1).jpg" alt="2019 launch">
+                    <div>
+                        <div class="year-label">2019</div>
+                        <div class="year-title">Seed is Planted</div>
+                        <div class="year-desc">Organization founded by survivor-leaders; first projects reached ~450 women and children in Bangui.</div>
+                    </div>
+                </div>
+                <div class="year-card" data-year="2020">
+                    <img src="images/2.jpg" alt="2020 safe spaces">
+                    <div>
+                        <div class="year-label">2020</div>
+                        <div class="year-title">Expansion Amid Crisis</div>
+                        <div class="year-desc">Opened Women's Safe Spaces and provided GBV response and MHPSS to thousands despite COVID and conflict.</div>
+                    </div>
+                </div>
+                <div class="year-card" data-year="2021">
+                    <img src="images/3.jpg" alt="2021 training">
+                    <div>
+                        <div class="year-label">2021</div>
+                        <div class="year-title">From Relief to Resilience</div>
+                        <div class="year-desc">Launched Economic Empowerment initiatives, training over 1,200 women in livelihoods and vocational skills.</div>
+                    </div>
+                </div>
+                <div class="year-card" data-year="2022">
+                    <img src="images/4.jpg" alt="2022 regional expansion">
+                    <div>
+                        <div class="year-label">2022</div>
+                        <div class="year-title">A Regional Movement</div>
+                        <div class="year-desc">Expanded to Republic of Congo & Cameroon; cumulative beneficiaries surpassed 32,000.</div>
+                    </div>
+                </div>
+                <div class="year-card" data-year="2023">
+                    <img src="images/5.jpg" alt="2023 innovation">
+                    <div>
+                        <div class="year-label">2023</div>
+                        <div class="year-title">Innovation Meets Impact</div>
+                        <div class="year-desc">Launched climate-smart agriculture and youth entrepreneurship; reach climbed to ~45,000.</div>
+                    </div>
+                </div>
+                <div class="year-card" data-year="2024">
+                    <img src="images/6.jpg" alt="2024 policy advocacy">
+                    <div>
+                        <div class="year-label">2024</div>
+                        <div class="year-title">Amplifying Voices</div>
+                        <div class="year-desc">Co-founded regional protection network; advocated policy reforms; services scaled to 68,000 beneficiaries.</div>
+                    </div>
+                </div>
+                <div class="year-card" data-year="2025">
+                    <img src="images/1 (1).jpg" alt="2025 future">
+                    <div>
+                        <div class="year-label">2025</div>
+                        <div class="year-title">Scaling What Works</div>
+                        <div class="year-desc">Launching Survivor Leadership Academy and aiming to reach 100,000 beneficiaries this year.</div>
+                    </div>
+                </div>
+            </div>
+
+            <aside class="side-panel">
+                <div class="panel-inner">
+                    <h3>Gallery & Notes</h3>
+                    <div class="mini">
+                        <a href="#"><img src="images/2.jpg" alt="gallery1"></a>
+                        <a href="#"><img src="images/3.jpg" alt="gallery2"></a>
+                        <a href="#"><img src="images/4.jpg" alt="gallery3"></a>
+                        <a href="#"><img src="images/5.jpg" alt="gallery4"></a>
+                    </div>
+                    <p style="color:var(--muted);font-size:13px;margin-top:12px">Click a year card to highlight its data point on the chart. Replace these images with your own by dropping them into the `images/` folder.</p>
+                </div>
+            </aside>
+        </section>
+
+        <section style="margin:18px 0 80px">
+            <div class="cta container">
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+                    <div>
+                        <h3 style="margin:0 0 6px">Support Our Next Phase</h3>
+                        <p style="margin:0;opacity:0.95">Help us scale survivor leadership, trauma healing centers, and scholarships to reach 100,000 beneficiaries.</p>
+                    </div>
+                    <div><a href="donate.html">Donate Now</a></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- NEW FOOTER (exact same as your new index.html) -->
+    <footer style="background:#2c3e50;color:white;padding:80px 20px 20px">
+        <div class="container" style="max-width:1200px;margin:0 auto">
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:50px;margin-bottom:40px">
+                <div>
+                    <h3 style="color:#2ecc71;margin-bottom:25px">About A.P.D.F.E</h3>
+                    <p style="color:#ccc;line-height:1.8;">We are dedicated to creating lasting change through education, healthcare, and community development initiatives worldwide.</p>
+                </div>
+                <div>
+                    <h3 style="color:#2ecc71;margin-bottom:25px">Quick Links</h3>
+                    <ul style="list-style:none;padding:0">
+                        <li style="margin-bottom:12px"><a href="about.html" style="color:#ccc">About Us</a></li>
+                        <li style="margin-bottom:12px"><a href="programs.html" style="color:#ccc">Our Programs</a></li>
+                        <li style="margin-bottom:12px"><a href="impact.html" style="color:#ccc">Impact Stories</a></li>
+                        <li style="margin-bottom:12px"><a href="volunteer.html" style="color:#ccc">Get Involved</a></li>
+                        <li style="margin-bottom:12px"><a href="contact.html" style="color:#ccc">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 style="color:#2ecc71;margin-bottom:25px">Contact Info</h3>
+                    <ul style="list-style:none;padding:0">
+                        <li style="margin-bottom:12px"><a href="mailto:info@apdfe.org" style="color:#ccc"><i class="ri-mail-line"></i> info@apdfe.org</a></li>
+                        <li style="margin-bottom:12px"><a href="tel:+250788123456" style="color:#ccc"><i class="ri-phone-line"></i> +250 788 123 456</a></li>
+                        <li style="margin-bottom:12px"><i class="ri-map-pin-line"></i> Kigali, Rwanda</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 style="color:#2ecc71;margin-bottom:25px">Follow Us</h3>
+                    <div style="display:flex;gap:15px;margin-top:15px">
+                        <a href="#" style="color:white;font-size:24px"><i class="ri-facebook-fill"></i></a>
+                        <a href="#" style="color:white;font-size:24px"><i class="ri-twitter-x-fill"></i></a>
+                        <a href="#" style="color:white;font-size:24px"><i class="ri-instagram-line"></i></a>
+                        <a href="#" style="color:white;font-size:24px"><i class="ri-linkedin-fill"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div style="text-align:center;padding-top:30px;border-top:1px solid #34495e;color:#bdc3c7">
+                © 2025 A.P.D.F.E - Association for People Development and Future Enhancement. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Original JS (unchanged) -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Data (2019-2025)
+        const YEARS = [2019,2020,2021,2022,2023,2024,2025];
+        const DATA = {
+            beneficiaries: [450, 8450, 9650, 32000, 45000, 68000, 100000],
+            safeSpaces:    [1, 3, 6, 12, 18, 24, 28],
+            communities:   [3, 12, 30, 78, 110, 142, 160]
+        };
+
+        // mini chart in hero
+        const miniCtx = document.getElementById('miniChart').getContext('2d');
+        new Chart(miniCtx, {
+            type:'line',
+            data:{labels:YEARS, datasets:[{label:'Beneficiaries',data:DATA.beneficiaries,borderColor:'#fff',backgroundColor:'rgba(255,255,255,0.12)',tension:0.3,pointRadius:0}]},
+            options:{plugins:{legend:{display:false}},scales:{x:{display:false},y:{display:false}},elements:{line:{borderWidth:2}}}
+        });
+
+        // main chart
+        const ctx = document.getElementById('impactChart').getContext('2d');
+        const config = {
+            type:'line',
+            data:{labels:YEARS,datasets:[
+                {label:'Beneficiaries',data:DATA.beneficiaries,borderColor:'#2980b9',backgroundColor:'rgba(41,128,185,0.12)',tension:0.3,pointRadius:6,pointHoverRadius:8},
+                {label:'Safe Spaces',data:DATA.safeSpaces,borderColor:'#2ecc71',backgroundColor:'rgba(46,204,113,0.12)',tension:0.3,pointRadius:5,hidden:true},
+                {label:'Communities',data:DATA.communities,borderColor:'#f39c12',backgroundColor:'rgba(243,156,18,0.10)',tension:0.3,pointRadius:5,hidden:true}
+            ]},
+            options:{responsive:true,plugins:{legend:{display:true}},interaction:{mode:'nearest',intersect:false},scales:{y:{beginAtZero:true}}}
+        };
+        const impactChart = new Chart(ctx, config);
+
+        // toggles
+        document.querySelectorAll('.toggle-btn').forEach(btn=>{
+            btn.addEventListener('click',()=>{
+                const target = btn.getAttribute('data-target');
+                document.querySelectorAll('.toggle-btn').forEach(b=>b.classList.remove('active'));
+                btn.classList.add('active');
+                impactChart.data.datasets.forEach(ds=>{
+                    ds.hidden = ds.label.toLowerCase().includes(target) ? false : true;
+                });
+                impactChart.update();
+            });
+        });
+
+        // counters animation
+        function animateCounters(){
+            document.querySelectorAll('.counter .num').forEach(el=>{
+                const target = Number(el.getAttribute('data-target'))||0;
+                const start = 0; const duration=1400; const t0=performance.now();
+                function step(now){
+                    const p = Math.min((now-t0)/duration,1);
+                    const v = Math.floor(p*target);
+                    el.textContent = v.toLocaleString() + (target>999?'+':'');
+                    if(p<1) requestAnimationFrame(step);
+                    else el.textContent = (target.toLocaleString()) + (target>999?'+':'');
+                }
+                requestAnimationFrame(step);
+            });
+        }
+        let countersStarted=false;
+        const countersObserver = new IntersectionObserver(entries=>{
+            entries.forEach(e=>{
+                if(e.isIntersecting && !countersStarted){countersStarted=true;animateCounters();countersObserver.disconnect();}
+            });
+        },{threshold:0.3});
+        countersObserver.observe(document.querySelector('.counters'));
+
+        // timeline -> chart interaction
+        document.querySelectorAll('.year-card').forEach(card=>{
+            card.addEventListener('click',()=>{
+                const year = Number(card.getAttribute('data-year'));
+                const idx = YEARS.indexOf(year);
+                if(idx<0) return;
+                impactChart.setActiveElements([{datasetIndex:0,index:idx}]);
+                impactChart.tooltip.setActiveElements([{datasetIndex:0,index:idx}], {x:0,y:0});
+                impactChart.update();
+                document.querySelector('#impactChart').scrollIntoView({behavior:'smooth',block:'center'});
+            });
+        });
+
+        // keyboard navigation for chart
+        let activeIndex = YEARS.length -1;
+        document.addEventListener('keydown', (e)=>{
+            if(['ArrowLeft','ArrowRight'].includes(e.key)){
+                if(e.key==='ArrowLeft') activeIndex = Math.max(0, activeIndex-1);
+                else activeIndex = Math.min(YEARS.length-1, activeIndex+1);
+                impactChart.setActiveElements([{datasetIndex:0,index:activeIndex}]);
+                impactChart.update();
+            }
+        });
+    </script>
+</body>
+</html>

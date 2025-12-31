@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A.P.D.F.E - Contact Us</title>
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f7fa;
+            color: #333;
+        }
+
+        h1,h2,h3,h4,h5,h6, .title { font-family: 'Poppins', 'Inter', system-ui, sans-serif; }
+
+        /* Header Styles (standard) */
+        header {
+            background: white;
+            color: #333;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        .top-bar {
+            background: #f8f9fa;
+            padding: 2px 0;
+            font-size: 12px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .top-bar .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .contact-info { display: flex; gap: 25px; }
+        .contact-info span { display: flex; align-items: center; gap: 5px; color: #555; }
+        .social-links { display: flex; gap: 15px; }
+        .social-links a { color: #555; text-decoration: none; transition: color 0.3s; }
+        .social-links a:hover { color: #2ecc71; }
+
+        .main-header {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 6px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo { display: flex; align-items: center; gap: 10px; margin-right: auto; }
+        .logo-image { width: 70px; height: auto; object-fit: contain; }
+        .logo-text h1 { font-size: 22px; font-weight: 700; margin-bottom: 0; color: #3498db; line-height: 1; }
+        .logo-text p { font-size: 10px; color: #666; letter-spacing: 0.5px; line-height: 1; margin-top: 3px; }
+
+        nav ul { display: flex; list-style: none; gap: 18px; align-items: center; margin: 0; padding: 0; }
+        nav ul li a { color: #333; text-decoration: none; font-weight: 500; font-size: 13px; transition: color 0.3s; position: relative; line-height: 1; padding: 3px 0; }
+        nav ul li a.active { color: #2ecc71; }
+        nav ul li a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: #2ecc71; transition: width 0.3s; }
+        nav ul li a.active::after, nav ul li a:hover::after { width: 100%; }
+        nav ul li a:hover { color: #2ecc71; }
+
+        .donate-btn { background: #2ecc71; color: white; padding: 8px 18px; border-radius: 25px; font-weight: 600; font-size: 13px; transition: transform 0.3s, box-shadow 0.3s; line-height: 1; }
+        .donate-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(46,204,113,0.4); }
+
+        /* Mobile Menu */
+        .menu-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; }
+        .menu-toggle span { width: 25px; height: 3px; background: #333; transition: all 0.3s; }
+        .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
+        .menu-toggle.active span:nth-child(2) { opacity: 0; }
+        .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -8px); }
+
+        /* HERO */
+        .hero {
+            text-align: center;
+            padding: 70px 0;
+            background: #fff;
+        }
+
+        .hero h1 {
+            font-size: 40px;
+            font-weight: 700;
+            color: #1a73e8;
+        }
+
+        .hero p {
+            margin-top: 10px;
+            font-size: 17px;
+            color: #555;
+        }
+
+        /* CONTACT SECTION */
+        .contact-section {
+            padding: 60px 10%;
+            display: flex;
+            gap: 50px;
+        }
+
+        /* LEFT SIDE - INFO */
+        .contact-info {
+            flex: 1;
+            background: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+        }
+
+        .info-title {
+            font-size: 24px;
+            color: #1a73e8;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .info-item {
+            margin-bottom: 20px;
+        }
+
+        .info-item h3 {
+            font-size: 16px;
+            color: #1ecb78;
+            margin-bottom: 6px;
+        }
+
+        .info-item p {
+            color: #555;
+        }
+
+        /* RIGHT SIDE - FORM */
+        .contact-form {
+            flex: 1;
+            background: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+        }
+
+        .contact-form h2 {
+            color: #1a73e8;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            outline: none;
+            transition: .3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            border-color: #1a73e8;
+        }
+
+        .send-btn {
+            width: 100%;
+            padding: 12px;
+            background: #1ecb78;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: .3s;
+        }
+
+        .send-btn:hover {
+            background: #18b56c;
+        }
+
+        /* MAP */
+        .map {
+            margin: 60px auto;
+            width: 90%;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+
+        iframe {
+            width: 100%;
+            height: 350px;
+            border: none;
+        }
+        /* Footer styles (copied from site standard) */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 80px 20px 20px;
+        }
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 50px;
+            margin-bottom: 40px;
+        }
+        .footer-section h3 { color: #2ecc71; margin-bottom: 25px; font-size: 20px; }
+        .footer-section ul { list-style: none; }
+        .footer-section ul li { margin-bottom: 12px; }
+        .footer-section a { color: #ccc; text-decoration: none; transition: all 0.3s; display: inline-block; }
+        .footer-section a:hover { color: #2ecc71; transform: translateX(5px); }
+        .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid #34495e; color: #bdc3c7; }
+
+        /* Dark overlay: present always but invisible by default; fades in/out when `body.nav-darken` toggles */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 900;
+            transition: opacity 400ms ease;
+        }
+
+        body.nav-darken::before { opacity: 1; }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="top-bar">
+            <div class="container">
+                <div class="contact-info">
+                    <span><i class="ri-mail-line"></i> info@apdfe.org</span>
+                    <span><i class="ri-phone-line"></i> +250 788 123 456 </span>
+                </div>
+                <div class="social-links">
+                    <a href="#" title="Facebook"><i class="ri-facebook-fill"></i></a>
+                    <a href="#" title="Twitter"><i class="ri-twitter-x-fill"></i></a>
+                    <a href="#" title="Instagram"><i class="ri-instagram-line"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="main-header">
+            <div class="logo">
+                <img src="images/logo.jpg" alt="A.P.D.F.E Logo" class="logo-image">
+                <div class="logo-text">
+                    <h1>A.P.D.F.E</h1>
+                    <p>Building Better Futures Together</p>
+                </div>
+            </div>
+            <div class="menu-toggle" onclick="document.getElementById('menu').classList.toggle('active')">
+                <span></span><span></span><span></span>
+            </div>
+            <nav>
+                <ul id="menu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="programs.html">Programs</a></li>
+                    <li><a href="impact.html">Impact</a></li>
+                    <li><a href="volunteer.html">Get Involved</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                    <li><a href="donate.html" class="donate-btn">Donate Now</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- HERO -->
+    <div class="hero">
+        <h1>Contact Us</h1>
+        <p>Reach out to us for support, partnership, or inquiries.</p>
+    </div>
+
+    <!-- CONTACT SECTION -->
+    <div class="contact-section">
+
+        <!-- INFO -->
+        <div class="contact-info">
+            <div class="info-title">Our Address & Contacts</div>
+
+            <div class="info-item">
+                <h3>📍 Office Address</h3>
+                <p>Kigali, Rwanda<br>KG 123 Street, Near KBC</p>
+            </div>
+
+            <div class="info-item">
+                <h3>📧 Email</h3>
+                <p>info@apdfe.org</p>
+            </div>
+
+            <div class="info-item">
+                <h3>📞 Phone</h3>
+                <p>+250 788 123 456</p>
+            </div>
+
+            <div class="info-item">
+                <h3>🕒 Working Hours</h3>
+                <p>Mon – Fri: 8:00 AM – 5:00 PM</p>
+            </div>
+        </div>
+
+        <!-- FORM -->
+        <div class="contact-form">
+            <h2>Send Us a Message</h2>
+
+            <div class="form-group">
+                <input type="text" placeholder="Your Name">
+            </div>
+
+            <div class="form-group">
+                <input type="email" placeholder="Your Email">
+            </div>
+
+            <div class="form-group">
+                <textarea rows="5" placeholder="Your Message"></textarea>
+            </div>
+
+            <button class="send-btn" onclick="submitForm()">Send Message</button>
+        </div>
+
+    </div>
+
+    <!-- MAP -->
+    <div class="map">
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d994.093151387681!2d30.061!3d-1.944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMcKwNTYnMzguNCJTIDMwwrAwMycxOS45IkU!5e0!3m2!1sen!2srw!4v1697030000000"></iframe>
+    </div>
+
+    <!-- Footer (standard) -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>About A.P.D.F.E</h3>
+                <p style="color:#ccc;line-height:1.8;">We are dedicated to creating lasting change through education, healthcare, and community development initiatives worldwide.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="programs.html">Our Programs</a></li>
+                    <li><a href="impact.html">Impact Stories</a></li>
+                    <li><a href="volunteer.html">Get Involved</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Contact Info</h3>
+                <ul>
+                    <li><a href="mailto:info@apdfe.org"><i class="ri-mail-line"></i> info@apdfe.org</a></li>
+                    <li><a href="tel:+250788123456"><i class="ri-phone-line"></i> +250 788 123 456</a></li>
+                    <li><a href="#"><i class="ri-map-pin-line"></i> Kigali, Rwanda</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links" style="display: flex; gap: 15px; margin-top: 15px;">
+                    <a href="#" style="font-size: 24px;"><i class="ri-facebook-fill"></i></a>
+                    <a href="#" style="font-size: 24px;"><i class="ri-twitter-x-fill"></i></a>
+                    <a href="#" style="font-size: 24px;"><i class="ri-instagram-line"></i></a>
+                    <a href="#" style="font-size: 24px;"><i class="ri-linkedin-fill"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2025 A.P.D.F.E - Association for People Development and Future Enhancement. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- JS -->
+    <script>
+        <script src="assets/js/nav-dropdown.js"></script>
+        function submitForm() {
+            alert("Message sent successfully!");
+        }
+    </script>
+
+    <script>
+        // Navbar hover/focus: darken body (overlay) while keeping header/nav visible
+        (function() {
+            const menu = document.getElementById('menu');
+            if (!menu) return;
+
+            function setDarken() { document.body.classList.add('nav-darken'); }
+            function clearDarken() { document.body.classList.remove('nav-darken'); }
+
+            document.addEventListener('mouseover', function(e) {
+                const a = e.target.closest && e.target.closest('#menu a');
+                if (a) setDarken();
+            });
+
+            document.addEventListener('mouseout', function(e) {
+                const a = e.target.closest && e.target.closest('#menu a');
+                if (a) clearDarken();
+            });
+
+            document.addEventListener('focusin', function(e) {
+                const a = e.target.closest && e.target.closest('#menu a');
+                if (a) setDarken();
+            });
+
+            document.addEventListener('focusout', function(e) {
+                const a = e.target.closest && e.target.closest('#menu a');
+                if (a) clearDarken();
+            });
+        })();
+    </script>
+
+</body>
+</html>

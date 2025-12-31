@@ -5,9 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - A.P.D.F.E</title>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/nav-dropdown.css">
     <style>
         *{margin:0;padding:0;box-sizing:border-box;}
-        body{font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;line-height:1.8;color:#333;background:white;overflow-x:hidden;}
+        body{font-family:'Inter',system-ui,-apple-system,'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;line-height:1.8;color:#333;background:white;overflow-x:hidden;}
+        h1,h2,h3,h4,h5,h6,.logo-text h1,.section-title{font-family:'Poppins','Inter',system-ui,sans-serif}
         
         /* HEADER */
         header{background:white;color:#333;box-shadow:0 2px 10px rgba(0,0,0,0.1);position:sticky;top:0;z-index:1000;}
@@ -328,6 +332,19 @@
             .countries-grid{grid-template-columns:1fr;}
             .mission-vision{grid-template-columns:1fr;}
         }
+        /* Dark overlay: present always but invisible by default; fades in/out when `body.nav-darken` toggles */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 900;
+            transition: opacity 400ms ease;
+        }
+
+        body.nav-darken::before { opacity: 1; }
     </style>
 </head>
 <body>
@@ -361,9 +378,21 @@
             <nav>
                 <ul id="menu">
                     <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html" class="active">About Us</a></li>
+                    <li><a href="about.html" class="active">About Us</a>
+                    <div class="drown"></div>
+                    
+                    </li>
                     <li><a href="programs.html">Programs</a></li>
                     <li><a href="impact.html">Impact</a></li>
+                     <li>
+                        <a href="news.html">Puclication</a>
+                        <div class="dropdown">
+                            <a href="news.html">news</a>
+                            <a href="news.html">images</a>
+                            <a href="news.html">on going project</a>
+                        </div>
+                    </li>
+                    <li>
                     <li><a href="volunteer.html">Get Involved</a></li>
                     <li><a href="contact.html">Contact</a></li>
                     <li><a href="donate.html" class="donate-btn">Donate Now</a></li>
@@ -406,7 +435,7 @@
                     <p>Operating in four of Central Africa's most fragile and conflict-affected countries—<strong>Central African Republic, Democratic Republic of Congo (Eastern DRC), Republic of Congo (Congo-Brazzaville), and Cameroon</strong>—we deliver trauma-informed, culturally relevant, and locally-led interventions in health, education, protection, economic empowerment, and peace-building.</p>
                 </div>
                 <div class="about-image">
-                    <img src="https://images.unsplash.com/photo-1593113646773-028c26a77d6b?w=800&q=80" alt="APDFE team empowering women in Central Africa">
+                    <img src="images/1 (1).jpg" alt="APDFE team empowering women in Central Africa">
                 </div>
             </div>
 
@@ -1101,5 +1130,43 @@
             document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && staffModal.classList.contains('active')) closeModal(); });
         })();
     </script>
+
+    <script>
+        // Navbar hover/focus: darken body (overlay) while keeping header/nav visible
+        (function() {
+            const menu = document.getElementById('menu');
+            if (!menu) return;
+
+            function setDarken() {
+                document.body.classList.add('nav-darken');
+            }
+
+            function clearDarken() {
+                document.body.classList.remove('nav-darken');
+            }
+
+            document.addEventListener('mouseover', function(e) {
+                const a = e.target.closest && e.target.closest('#menu a');
+                if (a) setDarken();
+            });
+
+            document.addEventListener('mouseout', function(e) {
+                const a = e.target.closest && e.target.closest('#menu a');
+                if (a) clearDarken();
+            });
+
+            // Keyboard accessibility
+            document.addEventListener('focusin', function(e) {
+                const a = e.target.closest && e.target.closest('#menu a');
+                if (a) setDarken();
+            });
+
+            document.addEventListener('focusout', function(e) {
+                const a = e.target.closest && e.target.closest('#menu a');
+                if (a) clearDarken();
+            });
+        })();
+    </script>
+    <script src="assets/js/nav-dropdown.js"></script>
 </body>
 </html>

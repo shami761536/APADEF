@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Our Programs - A.P.D.F.E</title>
     <link href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Poppins:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/nav-dropdown.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        body{font-family:'Inter',system-ui,-apple-system,'Segoe UI',Tahoma,Geneva,Verdana,sans-serif}
+        h1,h2,h3,h4,h5,h6,.logo-text h1,.section-title{font-family:'Poppins','Inter',system-ui,sans-serif}
+    </style>
     <style>
         * {
             margin: 0;
@@ -586,6 +593,19 @@
             .program-content h3 { font-size: 24px; }
             .stat-number { font-size: 32px; }
         }
+        /* Dark overlay: present always but invisible by default; fades in/out when `body.nav-darken` toggles */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 900;
+            transition: opacity 400ms ease;
+        }
+
+        body.nav-darken::before { opacity: 1; }
     </style>
 </head>
 <body>
@@ -674,7 +694,7 @@
                         </div>
                     </div>
                                         <div class="program-image">
-                                            <img src="images/1.jpg" alt="Health Program">
+                                            <img src="images/2.jpg" alt="Health Program">
                                         </div>
                 </div>
                 
@@ -1004,5 +1024,36 @@
             document.getElementById('menu').classList.toggle('active');
         });
     </script>
+    <script>
+        // Navbar hover/focus: darken body (overlay) while keeping header/nav visible
+        (function() {
+            const menu = document.getElementById('menu');
+            if (!menu) return;
+
+            function setDarken() { document.body.classList.add('nav-darken'); }
+            function clearDarken() { document.body.classList.remove('nav-darken'); }
+
+            document.addEventListener('mouseover', function(e) {
+                const a = e.target.closest && e.target.closest('#menu a');
+                if (a) setDarken();
+            });
+
+            document.addEventListener('mouseout', function(e) {
+                const a = e.target.closest && e.target.closest('#menu a');
+                if (a) clearDarken();
+            });
+
+            document.addEventListener('focusin', function(e) {
+                const a = e.target.closest && e.target.closest('#menu a');
+                if (a) setDarken();
+            });
+
+            document.addEventListener('focusout', function(e) {
+                const a = e.target.closest && e.target.closest('#menu a');
+                if (a) clearDarken();
+            });
+        })();
+    </script>
+    <script src="assets/js/nav-dropdown.js"></script>
 </body>
 </html>

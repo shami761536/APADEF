@@ -27,16 +27,144 @@
         .logo-image{width:85px;height:auto;object-fit:contain;}
         .logo-text h1{font-size:22px;font-weight:700;margin-bottom:0;color:#3498db;line-height:1;}
         .logo-text p{font-size:10px;color:#666;letter-spacing:0.5px;line-height:1;margin-top:3px;}
-        nav ul{display:flex;list-style:none;gap:18px;align-items:center;}
-        nav ul li a{color:#333;text-decoration:none;font-weight:500;font-size:13px;transition:color .3s;position:relative;padding:3px 0;}
-        nav ul li a.active{color:#2ecc71;}
-        nav ul li a::after{content:'';position:absolute;bottom:0;left:0;width:0;height:2px;background:#2ecc71;transition:width .3s;}
-        nav ul li a.active::after,nav ul li a:hover::after{width:100%;}
-        nav ul li a:hover{color:#2ecc71;}
-        .donate-btn{background:#2ecc71;color:white;padding:8px 18px;border-radius:25px;font-weight:600;font-size:13px;transition:transform .3s,box-shadow .3s;}
-        .donate-btn:hover{transform:translateY(-2px);box-shadow:0 5px 15px rgba(46,204,113,0.4);}
-        .menu-toggle{display:none;flex-direction:column;gap:5px;cursor:pointer;}
-        .menu-toggle span{width:25px;height:3px;background:#333;transition:all .3s;}
+       nav ul {
+            display: flex;
+            list-style: none;
+            gap: 18px;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+        nav ul li { position: relative; }
+        nav ul li a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 13px;
+            transition: color 0.3s;
+            position: relative;
+            padding: 10px 0;
+            display: block;
+        }
+        nav ul li a.active { color: #2ecc71; }
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #2ecc71;
+            transition: width 0.3s;
+        }
+        nav ul li a:hover::after, nav ul li a.active::after { width: 100%; }
+        nav ul li a:hover { color: #2ecc71; }
+
+        /* Dropdown Menu */
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: white;
+            min-width: 220px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            border-radius: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+            transform: translateX(-50%) translateY(10px);
+            z-index: 999;
+            padding: 12px 0;
+        }
+        nav ul li:hover > .dropdown,
+        nav ul li.dropdown-active > .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0);
+        }
+        .dropdown a {
+            padding: 10px 20px;
+            font-size: 13px;
+            white-space: nowrap;
+            color: #444;
+            display: block;
+        }
+        .dropdown a:hover {
+            background: #f0f8f4;
+            color: #2ecc71;
+        }
+
+        .donate-btn {
+            background: #2ecc71;
+            color: white;
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 13px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .donate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(46,204,113,0.4);
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            transition: all 0.3s;
+        }
+
+        /* Darken overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 900;
+            transition: opacity 400ms ease;
+        }
+        body.nav-darken::before { opacity: 1; }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .top-bar { display: none; }
+            .menu-toggle { display: flex; }
+            nav ul {
+                flex-direction: column;
+                gap: 0;
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                padding: 20px 0;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+            nav ul.active { display: flex; }
+            .dropdown {
+                position: static;
+                transform: none;
+                box-shadow: none;
+                opacity: 1;
+                visibility: visible;
+                display: none;
+                background: #f8f9fa;
+                border-radius: 0;
+            }
+            nav ul li.dropdown-active > .dropdown { display: block; }
+            .dropdown a { padding: 10px 40px; }
+        }
 
         /* HERO */
         .page-header{
@@ -377,23 +505,50 @@
             </div>
             <nav>
                 <ul id="menu">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about.html" class="active">About Us</a>
-                    <div class="drown"></div>
-                    
-                    </li>
-                    <li><a href="programs.html">Programs</a></li>
-                    <li><a href="impact.html">Impact</a></li>
-                     <li>
-                        <a href="news.html">Puclication</a>
+                    <li><a href="index.html" >Home</a></li>
+                    <li>
+                        <a href="about.html" class="active">About Us</a>
                         <div class="dropdown">
-                            <a href="news.html">news</a>
-                            <a href="news.html">images</a>
-                            <a href="news.html">on going project</a>
+                            <a href="about.html#mission">Our Mission</a>
+                            <a href="about.html#vision">Our Vision</a>
+                            <a href="about.html#team">Our Team</a>
+                            <a href="about.html#history">History</a>
                         </div>
                     </li>
                     <li>
-                    <li><a href="volunteer.html">Get Involved</a></li>
+                        <a href="programs.html">Programs</a>
+                        <div class="dropdown">
+                            <a href="programs.html#education">Education Initiative</a>
+                            <a href="programs.html#healthcare">Healthcare Access</a>
+                            <a href="programs.html#skills">Skills Development</a>
+                            <a href="programs.html#community">Community Projects</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="impact.html">Impact</a>
+                        <div class="dropdown">
+                            <a href="impact.html#stories">Success Stories</a>
+                            <a href="impact.html#stats">Statistics</a>
+                            <a href="impact.html#reports">Annual Reports</a>
+                            <a href="impact.html#gallery">Photo Gallery</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="news.html">Publication</a>
+                        <div class="dropdown">
+                            <a href="news.html#news">News</a>
+                            <a href="news.html#images">Images</a>
+                            <a href="news.html#projects">Ongoing Projects</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="volunteer.html">Get Involved</a>
+                        <div class="dropdown">
+                            <a href="volunteer.html#volunteer">Become a Volunteer</a>
+                            <a href="volunteer.html#internship">Internships</a>
+                            <a href="volunteer.html#partnerships">Corporate Partnerships</a>
+                        </div>
+                    </li>
                     <li><a href="contact.html">Contact</a></li>
                     <li><a href="donate.html" class="donate-btn">Donate Now</a></li>
                 </ul>

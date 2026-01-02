@@ -14,27 +14,38 @@
             padding: 0;
             box-sizing: border-box;
         }
-
         body {
-            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f5f7fa;
+            font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.7;
             color: #333;
+            overflow-x: hidden;
+            background: #f8f9fa;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        h1, h2, h3, h4, h5, h6, .section-title {
+            font-family: 'Poppins', 'Inter', system-ui, sans-serif;
+            font-weight: 700;
+            line-height: 1.3;
+            color: #1a1a1a;
+        }
+        .logo-text h1 {
+            font-family: 'Poppins', sans-serif;
+            font-weight: 800;
         }
 
-        h1,h2,h3,h4,h5,h6, .title { font-family: 'Poppins', 'Inter', system-ui, sans-serif; }
-
-        /* Header Styles (standard) */
+        /* Header Styles - aligned with donate page */
         header {
             background: white;
             color: #333;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 0;
             z-index: 1000;
         }
         .top-bar {
             background: #f8f9fa;
-            padding: 2px 0;
+            padding: 4px 0;
             font-size: 12px;
             border-bottom: 1px solid #e0e0e0;
         }
@@ -50,158 +61,301 @@
         .contact-info span { display: flex; align-items: center; gap: 5px; color: #555; }
         .social-links { display: flex; gap: 15px; }
         .social-links a { color: #555; text-decoration: none; transition: color 0.3s; }
-        .social-links a:hover { color: #2ecc71; }
+        .social-links a:hover { color: #3498db; }
 
         .main-header {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 6px 20px;
+            padding: 5px 20px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        .logo { display: flex; align-items: center; gap: 10px; margin-right: auto; }
-        .logo-image { width: 70px; height: auto; object-fit: contain; }
-        .logo-text h1 { font-size: 22px; font-weight: 700; margin-bottom: 0; color: #3498db; line-height: 1; }
+        .logo { display: flex; align-items: center; gap: 12px; margin-right: auto; }
+        .logo-image { width: 85px; height: auto; object-fit: contain; }
+        .logo-text h1 { font-size: 22px; font-weight: 700; margin: 0; color: #3498db; line-height: 1; }
         .logo-text p { font-size: 10px; color: #666; letter-spacing: 0.5px; line-height: 1; margin-top: 3px; }
 
-        nav ul { display: flex; list-style: none; gap: 18px; align-items: center; margin: 0; padding: 0; }
-        nav ul li a { color: #333; text-decoration: none; font-weight: 500; font-size: 13px; transition: color 0.3s; position: relative; line-height: 1; padding: 3px 0; }
-        nav ul li a.active { color: #2ecc71; }
-        nav ul li a::after { content: ''; position: absolute; bottom: 0; left: 0; width: 0; height: 2px; background: #2ecc71; transition: width 0.3s; }
-        nav ul li a.active::after, nav ul li a:hover::after { width: 100%; }
-        nav ul li a:hover { color: #2ecc71; }
-
-        .donate-btn { background: #2ecc71; color: white; padding: 8px 18px; border-radius: 25px; font-weight: 600; font-size: 13px; transition: transform 0.3s, box-shadow 0.3s; line-height: 1; }
-        .donate-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(46,204,113,0.4); }
-
-        /* Mobile Menu */
-        .menu-toggle { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 1001; }
-        .menu-toggle span { width: 25px; height: 3px; background: #333; transition: all 0.3s; }
-        .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 6px); }
-        .menu-toggle.active span:nth-child(2) { opacity: 0; }
-        .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(7px, -8px); }
-
-        /* HERO */
-        .hero {
-            text-align: center;
-            padding: 70px 0;
-            background: #fff;
-        }
-
-        .hero h1 {
-            font-size: 40px;
-            font-weight: 700;
-            color: #1a73e8;
-        }
-
-        .hero p {
-            margin-top: 10px;
-            font-size: 17px;
-            color: #555;
-        }
-
-        /* CONTACT SECTION */
-        .contact-section {
-            padding: 60px 10%;
+        nav ul {
             display: flex;
-            gap: 50px;
+            list-style: none;
+            gap: 18px;
+            align-items: center;
         }
-
-        /* LEFT SIDE - INFO */
-        .contact-info {
-            flex: 1;
-            background: #fff;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+        nav ul li { position: relative; }
+        nav ul li a {
+            color: #333;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 13px;
+            transition: color 0.3s;
+            position: relative;
+            padding: 10px 0;
+            display: block;
         }
+        nav ul li a.active, nav ul li a:hover { color: #3498db; }
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #3498db;
+            transition: width 0.3s;
+        }
+        nav ul li a:hover::after, nav ul li a.active::after { width: 100%; }
 
-        .info-title {
-            font-size: 24px;
-            color: #1a73e8;
-            margin-bottom: 20px;
+        .donate-btn {
+            background: #3498db;
+            color: white;
+            padding: 8px 18px;
+            border-radius: 25px;
             font-weight: 600;
+            font-size: 13px;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
+        .donate-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(52,152,219,0.4);
+            background: #2980b9;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+        }
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #333;
+            transition: all 0.3s;
+        }
+
+        /* Dark overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.6);
+            opacity: 0;
+            pointer-events: none;
+            z-index: 900;
+            transition: opacity 400ms ease;
+        }
+        body.nav-darken::before { opacity: 1; }
+
+        /* Responsive Header */
+        @media (max-width: 768px) {
+            .top-bar { display: none; }
+            .menu-toggle { display: flex; }
+            nav ul {
+                flex-direction: column;
+                gap: 0;
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                padding: 20px 0;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+            nav ul.active { display: flex; }
+        }
+
+        /* Contact Hero - inspired by donation hero */
+        .contact-hero {
+            background: #3498db;
+            color: white;
+            padding: 100px 20px 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .contact-hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        .contact-hero h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        .contact-hero p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Main Contact Container */
+        .contact-container {
+            max-width: 1200px;
+            margin: -60px auto 80px;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Contact Info Card */
+        .contact-info-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+        }
+        .contact-info-card h2 {
+            font-size: 32px;
+            color: #3498db;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .contact-info-card h2 i { font-size: 36px; }
 
         .info-item {
-            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .info-item:last-child { margin-bottom: 0; border-bottom: none; padding-bottom: 0; }
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            background: #3498db;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            flex-shrink: 0;
+        }
+        .info-details h3 {
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 8px;
+        }
+        .info-details p {
+            color: #666;
+            font-size: 15px;
         }
 
-        .info-item h3 {
-            font-size: 16px;
-            color: #1ecb78;
-            margin-bottom: 6px;
-        }
-
-        .info-item p {
-            color: #555;
-        }
-
-        /* RIGHT SIDE - FORM */
-        .contact-form {
-            flex: 1;
-            background: #fff;
+        /* Contact Form Card */
+        .contact-form-card {
+            background: white;
+            border-radius: 20px;
             padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
         }
-
-        .contact-form h2 {
-            color: #1a73e8;
-            margin-bottom: 20px;
+        .contact-form-card h2 {
+            font-size: 32px;
+            color: #3498db;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
+        .contact-form-card h2 i { font-size: 36px; }
 
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 25px;
         }
-
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
+        }
         .form-group input,
         .form-group textarea {
             width: 100%;
-            padding: 12px;
-            border-radius: 10px;
-            border: 1px solid #ccc;
-            outline: none;
-            transition: .3s;
+            padding: 14px;
+            border: 2px solid #e0e0e0;
+            border-radius: 12px;
+            font-size: 15px;
+            transition: all 0.3s;
         }
-
         .form-group input:focus,
         .form-group textarea:focus {
-            border-color: #1a73e8;
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52,152,219,0.1);
+        }
+        .form-group textarea { resize: vertical; min-height: 120px; }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
         }
 
         .send-btn {
             width: 100%;
-            padding: 12px;
-            background: #1ecb78;
-            border: none;
+            padding: 18px;
+            background: #3498db;
             color: white;
-            font-size: 16px;
-            border-radius: 10px;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
             cursor: pointer;
-            transition: .3s;
+            transition: all 0.4s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            box-shadow: 0 10px 30px rgba(52,152,219,0.3);
         }
-
         .send-btn:hover {
-            background: #18b56c;
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(52,152,219,0.4);
+            background: #2980b9;
         }
 
-        /* MAP */
-        .map {
-            margin: 60px auto;
-            width: 90%;
-            border-radius: 15px;
+        /* Map Section */
+        .map-section {
+            max-width: 1200px;
+            margin: 0 auto 80px;
+            padding: 0 20px;
+        }
+        .map-card {
+            background: white;
+            border-radius: 20px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
         }
-
-        iframe {
+        .map-card iframe {
             width: 100%;
-            height: 350px;
+            height: 450px;
             border: none;
         }
-        /* Footer styles (copied from site standard) */
+
+        /* Footer */
         footer {
             background: #2c3e50;
             color: white;
@@ -215,29 +369,27 @@
             gap: 50px;
             margin-bottom: 40px;
         }
-        .footer-section h3 { color: #2ecc71; margin-bottom: 25px; font-size: 20px; }
+        .footer-section h3 { color: #3498db; margin-bottom: 25px; font-size: 20px; }
         .footer-section ul { list-style: none; }
         .footer-section ul li { margin-bottom: 12px; }
         .footer-section a { color: #ccc; text-decoration: none; transition: all 0.3s; display: inline-block; }
-        .footer-section a:hover { color: #2ecc71; transform: translateX(5px); }
+        .footer-section a:hover { color: #3498db; transform: translateX(5px); }
         .footer-bottom { text-align: center; padding-top: 30px; border-top: 1px solid #34495e; color: #bdc3c7; }
 
-        /* Dark overlay: present always but invisible by default; fades in/out when `body.nav-darken` toggles */
-        body::before {
-            content: '';
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.6);
-            opacity: 0;
-            pointer-events: none;
-            z-index: 900;
-            transition: opacity 400ms ease;
+        /* Responsive */
+        @media (max-width: 992px) {
+            .contact-container {
+                grid-template-columns: 1fr;
+                margin: -40px auto 60px;
+            }
         }
-
-        body.nav-darken::before { opacity: 1; }
+        @media (max-width: 480px) {
+            .contact-hero h1 { font-size: 2.5rem; }
+            .contact-hero p { font-size: 16px; }
+            .form-row { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
-
 <body>
 
     <header>
@@ -245,7 +397,7 @@
             <div class="container">
                 <div class="contact-info">
                     <span><i class="ri-mail-line"></i> info@apdfe.org</span>
-                    <span><i class="ri-phone-line"></i> +250 788 123 456 </span>
+                    <span><i class="ri-phone-line"></i> +250 788 123 456</span>
                 </div>
                 <div class="social-links">
                     <a href="#" title="Facebook"><i class="ri-facebook-fill"></i></a>
@@ -262,7 +414,7 @@
                     <p>Building Better Futures Together</p>
                 </div>
             </div>
-            <div class="menu-toggle" onclick="document.getElementById('menu').classList.toggle('active')">
+            <div class="menu-toggle" id="menu-toggle">
                 <span></span><span></span><span></span>
             </div>
             <nav>
@@ -271,6 +423,7 @@
                     <li><a href="about.html">About Us</a></li>
                     <li><a href="programs.html">Programs</a></li>
                     <li><a href="impact.html">Impact</a></li>
+                    <li><a href="news.html">Publication</a></li>
                     <li><a href="volunteer.html">Get Involved</a></li>
                     <li><a href="contact.html" class="active">Contact</a></li>
                     <li><a href="donate.html" class="donate-btn">Donate Now</a></li>
@@ -279,67 +432,85 @@
         </div>
     </header>
 
-    <!-- HERO -->
-    <div class="hero">
-        <h1>Contact Us</h1>
-        <p>Reach out to us for support, partnership, or inquiries.</p>
-    </div>
+    <section class="contact-hero">
+        <h1>Get in Touch</h1>
+        <p>We're here to answer your questions, hear your ideas, or discuss how we can work together to build better futures.</p>
+    </section>
 
-    <!-- CONTACT SECTION -->
-    <div class="contact-section">
-
-        <!-- INFO -->
-        <div class="contact-info">
-            <div class="info-title">Our Address & Contacts</div>
-
+    <div class="contact-container">
+        <div class="contact-info-card">
+            <h2><i class="ri-map-pin-line"></i> Contact Information</h2>
             <div class="info-item">
-                <h3>📍 Office Address</h3>
-                <p>Kigali, Rwanda<br>KG 123 Street, Near KBC</p>
+                <div class="info-icon"><i class="ri-map-pin-2-line"></i></div>
+                <div class="info-details">
+                    <h3>Office Address</h3>
+                    <p>Kigali, Rwanda<br>KG 123 Street, Near KBC</p>
+                </div>
             </div>
-
             <div class="info-item">
-                <h3>📧 Email</h3>
-                <p>info@apdfe.org</p>
+                <div class="info-icon"><i class="ri-phone-line"></i></div>
+                <div class="info-details">
+                    <h3>Phone</h3>
+                    <p>+250 788 123 456</p>
+                </div>
             </div>
-
             <div class="info-item">
-                <h3>📞 Phone</h3>
-                <p>+250 788 123 456</p>
+                <div class="info-icon"><i class="ri-mail-line"></i></div>
+                <div class="info-details">
+                    <h3>Email</h3>
+                    <p>info@apdfe.org</p>
+                </div>
             </div>
-
             <div class="info-item">
-                <h3>🕒 Working Hours</h3>
-                <p>Mon – Fri: 8:00 AM – 5:00 PM</p>
+                <div class="info-icon"><i class="ri-time-line"></i></div>
+                <div class="info-details">
+                    <h3>Working Hours</h3>
+                    <p>Monday – Friday: 8:00 AM – 5:00 PM</p>
+                </div>
             </div>
         </div>
 
-        <!-- FORM -->
-        <div class="contact-form">
-            <h2>Send Us a Message</h2>
-
-            <div class="form-group">
-                <input type="text" placeholder="Your Name">
-            </div>
-
-            <div class="form-group">
-                <input type="email" placeholder="Your Email">
-            </div>
-
-            <div class="form-group">
-                <textarea rows="5" placeholder="Your Message"></textarea>
-            </div>
-
-            <button class="send-btn" onclick="submitForm()">Send Message</button>
+        <div class="contact-form-card">
+            <h2><i class="ri-message-3-line"></i> Send Us a Message</h2>
+            <form id="contactForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Your Name *</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Your Email *</label>
+                        <input type="email" id="email" required>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone">
+                    </div>
+                    <div class="form-group">
+                        <label for="subject">Subject *</label>
+                        <input type="text" id="subject" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="message">Your Message *</label>
+                    <textarea id="message" required></textarea>
+                </div>
+                <button type="submit" class="send-btn">
+                    <i class="ri-send-plane-line"></i>
+                    <span>Send Message</span>
+                </button>
+            </form>
         </div>
-
     </div>
 
-    <!-- MAP -->
-    <div class="map">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d994.093151387681!2d30.061!3d-1.944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMcKwNTYnMzguNCJTIDMwwrAwMycxOS45IkU!5e0!3m2!1sen!2srw!4v1697030000000"></iframe>
+    <div class="map-section">
+        <div class="map-card">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d994.093151387681!2d30.061!3d-1.944!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMcKwNTYnMzguNCJTIDMwwrAwMycxOS45IkU!5e0!3m2!1sen!2srw!4v1697030000000" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
     </div>
 
-    <!-- Footer (standard) -->
     <footer>
         <div class="footer-container">
             <div class="footer-section">
@@ -375,47 +546,22 @@
             </div>
         </div>
         <div class="footer-bottom">
-            © 2025 A.P.D.F.E - Association for People Development and Future Enhancement. All rights reserved.
+            © 2026 A.P.D.F.E - Association for People Development and Future Enhancement. All rights reserved.
         </div>
     </footer>
 
-    <!-- JS -->
     <script>
-        <script src="assets/js/nav-dropdown.js"></script>
-        function submitForm() {
-            alert("Message sent successfully!");
-        }
-    </script>
+        // Mobile menu toggle
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            document.getElementById('menu').classList.toggle('active');
+        });
 
-    <script>
-        // Navbar hover/focus: darken body (overlay) while keeping header/nav visible
-        (function() {
-            const menu = document.getElementById('menu');
-            if (!menu) return;
-
-            function setDarken() { document.body.classList.add('nav-darken'); }
-            function clearDarken() { document.body.classList.remove('nav-darken'); }
-
-            document.addEventListener('mouseover', function(e) {
-                const a = e.target.closest && e.target.closest('#menu a');
-                if (a) setDarken();
-            });
-
-            document.addEventListener('mouseout', function(e) {
-                const a = e.target.closest && e.target.closest('#menu a');
-                if (a) clearDarken();
-            });
-
-            document.addEventListener('focusin', function(e) {
-                const a = e.target.closest && e.target.closest('#menu a');
-                if (a) setDarken();
-            });
-
-            document.addEventListener('focusout', function(e) {
-                const a = e.target.closest && e.target.closest('#menu a');
-                if (a) clearDarken();
-            });
-        })();
+        // Form submission (demo alert)
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you! Your message has been sent successfully.');
+            this.reset();
+        });
     </script>
 
 </body>

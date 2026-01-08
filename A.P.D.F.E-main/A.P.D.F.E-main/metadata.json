@@ -1,0 +1,7 @@
+{
+  "name": "A.P.D.F.E - Action Pour le Développement de la Femme et de l'Enfant",
+  "description": "A survivor-led humanitarian organization empowering women and children in conflict-affected Central Africa since 2019.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
